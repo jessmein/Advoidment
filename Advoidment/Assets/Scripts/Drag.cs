@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Drag : MonoBehaviour
 {
-    private bool dragging = false;
+    public bool dragging = false;
     private Vector3 offset;
+    public Vector3 originalPosition;
+
+    public GameObject Ad;
+    public Vector3 scale;
+
+    public GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.localPosition = new Vector3(0, 0, 0);
+        originalPosition = transform.position;
+        scale = Ad.transform.localScale;
     }
 
     // Update is called once per frame
@@ -19,6 +27,31 @@ public class Drag : MonoBehaviour
         if (dragging)
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+
+            
+            //Right bounds
+            if (transform.localPosition.x > 1.83)
+            {
+                transform.position = new Vector3(originalPosition.x + (1.82f * scale.x), transform.position.y, transform.position.z);
+            }
+
+            //Left bounds
+            if (transform.localPosition.x < -1.83)
+            {
+                transform.position = new Vector3(originalPosition.x - (1.82f * scale.x), transform.position.y, transform.position.z);
+            }
+
+            //Upper bounds
+            if (transform.localPosition.y > 1.25)
+            {
+                transform.position = new Vector3(transform.position.x, originalPosition.y + (1.24f * scale.y), transform.position.z);
+            }
+
+            //Lower bounds
+            if (transform.localPosition.y < -1.25)
+            {
+                transform.position = new Vector3(transform.position.x, originalPosition.y - (1.24f * scale.y), transform.position.z);
+            }
         }
     }
 
@@ -32,4 +65,5 @@ public class Drag : MonoBehaviour
     {
         dragging = false;
     }
+    
 }
