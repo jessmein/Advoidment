@@ -19,6 +19,8 @@ public class Drag : MonoBehaviour
         transform.localPosition = new Vector3(0, 0, 0);
         originalPosition = transform.position;
         scale = Ad.transform.localScale;
+
+        //transform.position = new Vector3(originalPosition.x + 50f, originalPosition.y, originalPosition.z);
     }
 
     // Update is called once per frame
