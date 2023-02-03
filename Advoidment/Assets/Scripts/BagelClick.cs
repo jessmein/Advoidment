@@ -9,7 +9,7 @@ public class BagelClick : MonoBehaviour {
     //[SerializeField] GameObject begal;
     public int Score { get { return score; } }
 
-    private int score = 0;
+    public static int score = 0;
 
     public GameObject bagel;
     public float bagelRadius;
