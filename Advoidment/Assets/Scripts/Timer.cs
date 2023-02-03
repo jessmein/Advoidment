@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeLeft = 10; // start with 90 seconds // set to 10 for testing
+        timeLeft = 91; // start with 90 seconds // set to 10 for testing
         timeDisplay = GameObject.Find("Timer Display").GetComponent<Text>();
     }
 

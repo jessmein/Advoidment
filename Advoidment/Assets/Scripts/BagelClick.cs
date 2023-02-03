@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BagelClick : MonoBehaviour {
     // Start is called before the first frame update
@@ -14,9 +15,16 @@ public class BagelClick : MonoBehaviour {
     public GameObject bagel;
     public float bagelRadius;
 
+    private Text scoreDisplay;
+    private Timer timeManager;
+
     void Start()
     {
         bagelRadius = bagel.transform.localScale.x / 2.0f;
+
+        scoreDisplay = GameObject.Find("Score Display").GetComponent<Text>();
+
+        timeManager = FindObjectOfType<Timer>();
     }
 
     public void OnClick(InputValue value)
@@ -25,6 +33,7 @@ public class BagelClick : MonoBehaviour {
 
         if (Vector2.Distance(mousePos, bagel.transform.position) <= bagelRadius) {
             score++;
+            timeManager.AddTime();
         }
 
     }
@@ -32,7 +41,7 @@ public class BagelClick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(score);
+        scoreDisplay.text = "Score: " + score;
     }
 
 }
