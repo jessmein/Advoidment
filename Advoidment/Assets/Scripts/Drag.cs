@@ -16,7 +16,7 @@ public class Drag : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //transform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(0, 0, 0);
         originalPosition = transform.position;
         scale = Ad.transform.localScale;
     }
