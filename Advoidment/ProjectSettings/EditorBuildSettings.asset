@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Endless Mode.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/End Screen.unity
+    guid: 51403cd6bd79dd3459c0f8d166eb2563
+  - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 45973c1bad5fb96408e5e02ccd106d12
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 35d0d3561f221ae40b0076954c45d923, type: 2}

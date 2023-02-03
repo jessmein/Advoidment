@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Programmer: Jessica Niem
@@ -16,7 +17,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeLeft = 91; // start with 90 seconds
+        timeLeft = 91; // start with 90 seconds // set to 10 for testing
         timeDisplay = GameObject.Find("Timer Display").GetComponent<Text>();
     }
 
@@ -31,6 +32,7 @@ public class Timer : MonoBehaviour
         else
         {
             // end game
+            SceneManager.LoadScene("End Screen");
         }
 
         // if there's 15 seconds left, change text color to red
