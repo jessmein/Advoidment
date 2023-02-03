@@ -10,6 +10,8 @@ public class BagelClick : MonoBehaviour {
     //[SerializeField] GameObject begal;
     public int Score { get { return score; } }
 
+    public GameManager gameManager;
+
     public static int score = 0;
 
     public GameObject bagel;
@@ -30,8 +32,11 @@ public class BagelClick : MonoBehaviour {
     public void OnClick(InputValue value)
     {
         Vector2 mousePos = Input.mousePosition;
+        Vector2 test = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
 
-        if (Vector2.Distance(mousePos, bagel.transform.position) <= bagelRadius) {
+        float distance = Vector2.Distance(mousePos, test);
+
+        if (distance <= bagelRadius && gameManager.activeAds == 0) {
             score++;
             timeManager.AddTime();
         }
