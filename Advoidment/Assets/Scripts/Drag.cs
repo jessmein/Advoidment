@@ -13,6 +13,7 @@ public class Drag : MonoBehaviour
 
     public GameObject target;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,9 @@ public class Drag : MonoBehaviour
         originalPosition = transform.position;
         scale = Ad.transform.localScale;
 
-        //transform.position = new Vector3(originalPosition.x + 50f, originalPosition.y, originalPosition.z);
+        transform.position = new Vector2(
+            originalPosition.x + (Random.Range(-90.0f, 90.0f)), originalPosition.y + (Random.Range(-90.0f, 90.0f))
+            );
     }
 
     // Update is called once per frame
