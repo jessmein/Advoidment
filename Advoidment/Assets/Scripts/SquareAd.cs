@@ -50,6 +50,13 @@ public class SquareAd : MonoBehaviour
             }
             
         }
+        else if (keyCollider.bounds.Intersects(targetCollider.bounds) && !keyDragClass.dragged)
+        {
+             target.gameObject.transform.localPosition = new Vector2(
+                (float)rand.NextDouble() * (1.6f + 1.6f) - 1.6f,
+                (float)rand.NextDouble() * (1.0f + 1.0f) - 1.0f
+            );
+        }
     }
 
     public void CreateAd() {
