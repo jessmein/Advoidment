@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
         if (timer.timeLeft != prevTime) {
             int r = rand.Next(0, 10000) + 1;
             if (r <= 25 && activeAds < 1) {
-                puzzle.CreateAd();
-                activeAds++;
+                //puzzle.CreateAd();
+                //activeAds++;
             }
         }
 
