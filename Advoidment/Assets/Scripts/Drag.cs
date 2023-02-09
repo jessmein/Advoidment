@@ -13,6 +13,8 @@ public class Drag : MonoBehaviour
 
     public GameObject target;
 
+    public bool dragged;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,8 @@ public class Drag : MonoBehaviour
         transform.position = new Vector2(
             originalPosition.x + (Random.Range(-90.0f, 90.0f)), originalPosition.y + (Random.Range(-90.0f, 90.0f))
             );
+
+        dragged = false;
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class Drag : MonoBehaviour
     {
         if (dragging)
         {
+            dragged = true;
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
 
             

@@ -10,7 +10,9 @@ public class SquareAd : MonoBehaviour
     public GameObject target;
     public GameObject key;
 
+
     public GameManager gameManager;
+    private Drag keyDragClass;
 
     Collider2D targetCollider, keyCollider;
     // Start is called before the first frame update
@@ -31,12 +33,14 @@ public class SquareAd : MonoBehaviour
         {
             keyCollider= key.GetComponent<Collider2D>();
         }
+
+        keyDragClass = key.GetComponent<Drag>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (keyCollider.bounds.Intersects(targetCollider.bounds))
+        if (keyCollider.bounds.Intersects(targetCollider.bounds) && keyDragClass.dragged)
         {
             if (key.GetComponent<Drag>().dragging == false)
             {
@@ -55,6 +59,7 @@ public class SquareAd : MonoBehaviour
             (float) rand.NextDouble() * (1.6f + 1.6f) - 1.6f,
             (float) rand.NextDouble() * (1.0f + 1.0f) - 1.0f
         );
+        //targetCollider.bounds.Contains(key.transform.localPosition);
         
         //key.gameObject.transform.localPosition = target.transform.localPosition * -1;
         //transform.position = new Vector3(originalPosition.x + 50f, originalPosition.y, originalPosition.z);
