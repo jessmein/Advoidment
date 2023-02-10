@@ -31,7 +31,7 @@ public class BagelClick : MonoBehaviour {
 
     public void OnClick(InputValue value)
     {
-        Vector2 mousePos = Input.mousePosition;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 test = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
 
         float distance = Vector2.Distance(mousePos, test);
