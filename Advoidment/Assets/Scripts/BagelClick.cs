@@ -20,6 +20,8 @@ public class BagelClick : MonoBehaviour {
     private Text scoreDisplay;
     private Timer timeManager;
 
+    private Animator bagelClick;
+
     void Start()
     {
         bagelRadius = bagel.transform.localScale.x / 2.0f;
@@ -27,6 +29,8 @@ public class BagelClick : MonoBehaviour {
         scoreDisplay = GameObject.Find("Score Display").GetComponent<Text>();
 
         timeManager = FindObjectOfType<Timer>();
+
+        bagelClick = bagel.GetComponent<Animator>();
     }
 
     public void OnClick(InputValue value)
@@ -37,10 +41,10 @@ public class BagelClick : MonoBehaviour {
         float distance = Vector2.Distance(mousePos, test);
 
         if (distance <= bagelRadius && gameManager.activeAds == 0) {
+            bagelClick.SetTrigger("btnClicked"); // starts the animator
             score++;
-            timeManager.AddTime();
+            timeManager.AddTime(); // increases the time
         }
-
     }
 
     // Update is called once per frame
@@ -48,5 +52,4 @@ public class BagelClick : MonoBehaviour {
     {
         scoreDisplay.text = "Score: " + score;
     }
-
 }
