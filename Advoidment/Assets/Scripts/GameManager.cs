@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Timer timer;
-    public SquareAd puzzle;
+    public SquareAd puzzleAd;
+    public RunningAd runningAd;
     public int activeAds = 0;
 
     private float prevTime;
@@ -25,7 +26,16 @@ public class GameManager : MonoBehaviour
         if (timer.timeLeft != prevTime) {
             int r = rand.Next(0, 10000) + 1;
             if (r <= 25 && activeAds < 1) {
-                puzzle.CreateAd();
+                int s = rand.Next(0, 2);
+                if (s == 0)
+                {
+                    puzzleAd.CreateAd();
+                }
+                if (s == 1)
+                {
+                    runningAd.CreateAd();
+                }
+                
                 activeAds++;
             }
         }
