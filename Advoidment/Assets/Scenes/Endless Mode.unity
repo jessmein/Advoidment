@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 2147405758}
-  puzzle: {fileID: 6252649985835849925, guid: 523397e67eb50d941b78741116c86407, type: 3}
+  puzzleAd: {fileID: 6252649985835849925, guid: 523397e67eb50d941b78741116c86407, type: 3}
+  runningAd: {fileID: 4954798963131858879, guid: e6a1546c8374f7047a147a8e2b488d76, type: 3}
   activeAds: 0
 --- !u!4 &322395962
 Transform:
