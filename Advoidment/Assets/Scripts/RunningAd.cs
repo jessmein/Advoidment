@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.GraphicsBuffer;
+//using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEngine.GraphicsBuffer;
 
 public class RunningAd : MonoBehaviour
 {
@@ -50,7 +50,7 @@ public class RunningAd : MonoBehaviour
             {
                 if (isMoving)
                 {
-                    enemies[i].transform.position += new Vector3(0, -0.005f * scale.x, 0);
+                    enemies[i].transform.position += new Vector3(0, (-5f * scale.x) * Time.deltaTime, 0);
                 }
                 
                 if (enemies[i])

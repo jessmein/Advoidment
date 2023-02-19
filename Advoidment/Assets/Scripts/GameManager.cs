@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
         if (timer.timeLeft != prevTime) {
             int r = rand.Next(0, 10000) + 1;
-            if (r <= 25 && activeAds < 1) {
+            if (r <= 100 && activeAds < 1) {
                 int s = rand.Next(0, 2);
                 if (s == 0)
                 {
@@ -42,6 +42,6 @@ public class GameManager : MonoBehaviour
 
         prevTime = timer.timeLeft;
     }
-
+    //25
 
 }
