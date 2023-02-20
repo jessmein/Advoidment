@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SquareAd : MonoBehaviour
+public class SquareAd : Advertisement
 {
     private System.Random rand = new System.Random();
 
@@ -11,18 +11,19 @@ public class SquareAd : MonoBehaviour
     public GameObject key;
 
 
-    public GameManager gameManager;
+    public AdManager adManager;
     private Drag keyDragClass;
 
     Collider2D targetCollider, keyCollider;
+
+    public override bool Paused { get { return paused; } }
+    public override bool Completed { get { return completed; } set { completed = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject gObject in SceneManager.GetActiveScene().GetRootGameObjects()) {
-            if (gObject.name == "GameManager") {
-                gameManager = gObject.GetComponent<GameManager>();
-            }
-        }
+
+        adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
 
         if (target != null)
         {
@@ -40,6 +41,13 @@ public class SquareAd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log($"IN UPADTE METHOD: {Completed} || {completed}");
+        adManager.ActiveAdComplete = Completed;
+
+        if (Paused) {
+            return;
+        }
+
         if (keyCollider.bounds.Intersects(targetCollider.bounds) && keyDragClass.dragged)
         {
             if (key.GetComponent<Drag>().dragging == false)
@@ -59,7 +67,7 @@ public class SquareAd : MonoBehaviour
         }
     }
 
-    public void CreateAd() {
+    public override void CreateAd() {
         Instantiate(gameObject);
         
         target.gameObject.transform.localPosition = new Vector2(
@@ -80,11 +88,16 @@ public class SquareAd : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    IEnumerator waiter()
+    protected override IEnumerator waiter()
     {
         yield return new WaitForSeconds(1);
+        yield return Completed = true;
         Debug.Log("BYE");
-        gameManager.activeAds = 0;
+        //gameManager.activeAds = 0;
         Destroy(gameObject);
+    }
+
+    protected override IEnumerator waiterDeath() {
+        return null;
     }
 }

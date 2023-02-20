@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 //using static UnityEditor.Experimental.GraphView.GraphView;
 //using static UnityEngine.GraphicsBuffer;
 
-public class RunningAd : MonoBehaviour
+public class RunningAd : Advertisement
 {
     public GameObject player;
     public List<GameObject> enemies;
@@ -20,18 +20,17 @@ public class RunningAd : MonoBehaviour
     public GameObject loseScreen;
 
     private System.Random rand = new System.Random();
-    public GameManager gameManager;
+    public AdManager adManager;
+
+    public override bool Paused { get { return paused; } }
+    public override bool Completed { get { return completed; } set { completed = value; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject gObject in SceneManager.GetActiveScene().GetRootGameObjects())
-        {
-            if (gObject.name == "GameManager")
-            {
-                gameManager = gObject.GetComponent<GameManager>();
-            }
-        }
+
+        adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+
         scale = transform.localScale;
         enemy.GetComponent<SpriteRenderer>().enabled = false;
         loseScreen.GetComponent<SpriteRenderer>().enabled = false;
@@ -44,6 +43,13 @@ public class RunningAd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log($"IN UPADTE METHOD: {Completed}");
+        adManager.ActiveAdComplete = Completed;
+
+        if (Paused) {
+            return;
+        }
+
         if (enemies.Count > 0)
         {
             for (int i = 0; i < enemies.Count; i++)
@@ -139,16 +145,18 @@ public class RunningAd : MonoBehaviour
         SpawnEnemies();
     }
 
-    IEnumerator waiter()
+    protected override IEnumerator waiter()
     {
+        //Completed = true;
         winScreen.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(1);
+        yield return Completed = true;
         Debug.Log("See ya!");
-        gameManager.activeAds = 0;
+        //gameManager.activeAds = 0;
         Destroy(gameObject);
     }
 
-    IEnumerator waiterDeath()
+    protected override IEnumerator waiterDeath()
     {
         loseScreen.GetComponent<SpriteRenderer>().enabled = true;
         isDead = true;
@@ -159,7 +167,7 @@ public class RunningAd : MonoBehaviour
         DeleteEnemies();
     }
 
-    public void CreateAd()
+    public override void CreateAd()
     {
         Instantiate(gameObject);
         gameObject.SetActive(true);

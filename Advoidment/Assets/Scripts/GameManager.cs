@@ -9,39 +9,15 @@ public class GameManager : MonoBehaviour
     public RunningAd runningAd;
     public int activeAds = 0;
 
-    private float prevTime;
-    private System.Random rand = new System.Random();
-
     // Start is called before the first frame update
     void Start()
     {
-        prevTime = timer.timeLeft;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        activeAds = Mathf.Clamp(activeAds, 0, 1);
 
-        if (timer.timeLeft != prevTime) {
-            int r = rand.Next(0, 10000) + 1;
-            if (r <= 100 && activeAds < 1) {
-                int s = rand.Next(0, 2);
-                if (s == 0)
-                {
-                    puzzleAd.CreateAd();
-                }
-                if (s == 1)
-                {
-                    runningAd.CreateAd();
-                }
-                
-                activeAds++;
-            }
-        }
-
-        prevTime = timer.timeLeft;
     }
-    //25
-
 }

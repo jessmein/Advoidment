@@ -336,7 +336,7 @@ MonoBehaviour:
   isMoving: 1
   winScreen: {fileID: 1416350211781682558}
   loseScreen: {fileID: 8530944765353002544}
-  gameManager: {fileID: 0}
+  adManager: {fileID: 0}
 --- !u!1 &6452188077693735800
 GameObject:
   m_ObjectHideFlags: 0

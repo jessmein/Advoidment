@@ -425,6 +425,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &862687610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862687612}
+  - component: {fileID: 862687611}
+  m_Layer: 0
+  m_Name: AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &862687611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862687610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572f67cfc9eb330449ee7a3652e63712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentChanceToSpawn: 20
+  ads:
+  - {fileID: 6252649985835849925, guid: 523397e67eb50d941b78741116c86407, type: 3}
+  - {fileID: 4954798963131858879, guid: e6a1546c8374f7047a147a8e2b488d76, type: 3}
+  maxActiveAds: 1
+--- !u!4 &862687612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862687610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 473.41748, y: 299.9943, z: -15.529146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1399298158
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939027e1421dac441a85f82e51858d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 322395961}
   bagel: {fileID: 1668420528}
   bagelRadius: 0
 --- !u!4 &1399298161
