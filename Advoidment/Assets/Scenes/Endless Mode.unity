@@ -155,6 +155,7 @@ MonoBehaviour:
   timer: {fileID: 2147405758}
   puzzleAd: {fileID: 6252649985835849925, guid: 523397e67eb50d941b78741116c86407, type: 3}
   runningAd: {fileID: 4954798963131858879, guid: e6a1546c8374f7047a147a8e2b488d76, type: 3}
+  BasketBallAd: {fileID: 1802011167730108594, guid: 7a85cd5034f02e64ab09d21d816af3c3, type: 3}
   activeAds: 0
 --- !u!4 &322395962
 Transform:
@@ -454,10 +455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572f67cfc9eb330449ee7a3652e63712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentChanceToSpawn: 20
+  basePercentChangeToSpawn: 20
   ads:
-  - {fileID: 6252649985835849925, guid: 523397e67eb50d941b78741116c86407, type: 3}
-  - {fileID: 4954798963131858879, guid: e6a1546c8374f7047a147a8e2b488d76, type: 3}
+  - {fileID: 1802011167730108594, guid: 7a85cd5034f02e64ab09d21d816af3c3, type: 3}
   maxActiveAds: 1
 --- !u!4 &862687612
 Transform:

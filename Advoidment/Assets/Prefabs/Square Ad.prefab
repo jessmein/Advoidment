@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4408564283829231215}
   key: {fileID: 4363446670785233180}
-  gameManager: {fileID: 0}
+  adManager: {fileID: 0}
 --- !u!1 &3897811123216618458
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4408564283829231215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3457774, y: -0.29482222, z: 0}
+  m_LocalPosition: {x: 1.3890527, y: -0.3481813, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
