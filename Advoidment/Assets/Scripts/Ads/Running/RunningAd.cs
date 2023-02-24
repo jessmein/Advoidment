@@ -12,7 +12,6 @@ public class RunningAd : Advertisement
     public GameObject enemy;
     public int enemyNumber;
     private Vector3 scale;
-    private int move;
     private bool isDead = false;
     public bool isMoving = true;
 
@@ -21,6 +20,7 @@ public class RunningAd : Advertisement
 
     private System.Random rand = new System.Random();
     public AdManager adManager;
+    private Vector3 originalPosition;
 
     public override bool Paused { get { return paused; } }
     public override bool Completed { get { return completed; } set { completed = value; } }
@@ -36,8 +36,11 @@ public class RunningAd : Advertisement
         loseScreen.GetComponent<SpriteRenderer>().enabled = false;
         winScreen.GetComponent<SpriteRenderer>().enabled = false;
 
+        player.transform.localPosition = new Vector3(0, 0, 0);
+        originalPosition = player.transform.position;
+        player.transform.position = new Vector3(originalPosition.x, originalPosition.y - 200f, 0);
+
         SpawnEnemies();
-        move = 0;
     }
 
     // Update is called once per frame
@@ -92,17 +95,18 @@ public class RunningAd : Advertisement
         {
             StartCoroutine(waiter());
         }
+
+        player.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, player.transform.position.y, 0);
+
         
-        if (Input.GetButtonDown("Right") && move < 1)
+        if (player.transform.localPosition.x > 2.78)
         {
-            player.transform.position += new Vector3(2 * scale.x, 0, 0);
-            move++;
+            player.transform.position = new Vector3(originalPosition.x + (2.78f * scale.x), player.transform.position.y, 0);
         }
 
-        if (Input.GetButtonDown("Left") && move > -1)
+        if (player.transform.localPosition.x < -2.78)
         {
-            player.transform.position += new Vector3(-2 * scale.x, 0, 0);
-            move--;
+            player.transform.position = new Vector3(originalPosition.x + (-2.78f * scale.x), player.transform.position.y, 0);
         }
     }
 

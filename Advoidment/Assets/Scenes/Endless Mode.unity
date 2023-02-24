@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePercentChangeToSpawn: 20
   ads:
-  - {fileID: 1802011167730108594, guid: 7a85cd5034f02e64ab09d21d816af3c3, type: 3}
+  - {fileID: 4954798963131858879, guid: e6a1546c8374f7047a147a8e2b488d76, type: 3}
   maxActiveAds: 1
 --- !u!4 &862687612
 Transform:
