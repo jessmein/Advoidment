@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4956399234369423190, guid: 2a7b80e58738c27408827b83a6c4d769, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.91
+      objectReference: {fileID: 0}
     - target: {fileID: 7960378110432806476, guid: 2a7b80e58738c27408827b83a6c4d769, type: 3}
       propertyPath: m_Name
       value: Dodging Ad
