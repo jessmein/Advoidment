@@ -46,7 +46,7 @@ public class BagelClick : MonoBehaviour {
             bagelClick.SetTrigger("btnClicked"); // starts the animator
             score++;
             adManager.PercentChanceToSpawn += 0.5f;
-            //timeManager.AddTime(); // increases the time
+            timeManager.AddTime(); // increases the time
         }
     }
 

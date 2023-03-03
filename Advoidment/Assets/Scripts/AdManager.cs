@@ -19,7 +19,9 @@ public class AdManager : MonoBehaviour
     private System.Random rand = new System.Random();
 
     private bool activeAdComplete = false;
+    private bool adsActive = false;
 
+    public bool AdsActive { get { return adsActive; } }
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
     public float PercentChanceToSpawn { get { return percentChanceToSpawn; } set { percentChanceToSpawn = value; } }
     // Start is called before the first frame update
@@ -49,6 +51,12 @@ public class AdManager : MonoBehaviour
                     activeAds.Peek().UnpauseAd();
                 }
             }
+
+            adsActive = true;
+        }
+        else
+        {
+            adsActive = false;
         }
     }
 

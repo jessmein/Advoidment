@@ -14,25 +14,31 @@ public class Timer : MonoBehaviour
     public float timeLeft;
     private Text timeDisplay; // used to update UI
 
+    public AdManager adManager;
+
     // Start is called before the first frame update
     void Start()
     {
         timeLeft = 91; // start with 90 seconds // set to 10 for testing
         timeDisplay = GameObject.Find("Timer Display").GetComponent<Text>();
+        adManager = FindObjectOfType<AdManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // deduct the time
-        if (timeLeft > 0)
+        if (adManager.AdsActive)
         {
-            timeLeft -= Time.deltaTime;
-        }
-        else
-        {
-            // end game
-            SceneManager.LoadScene("End Screen");
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                // end game
+                SceneManager.LoadScene("End Screen");
+            }
         }
 
         // if there's 15 seconds left, change text color to red
