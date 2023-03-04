@@ -28,7 +28,7 @@ public class AdManager : MonoBehaviour
     void Start()
     {
         timer = GameObject.Find("TimerTest").GetComponent<Timer>();
-        prevTime = timer.timeLeft;
+        prevTime = timer.TimeLeft;
 
         percentChanceToSpawn = basePercentChangeToSpawn;
 
@@ -61,7 +61,7 @@ public class AdManager : MonoBehaviour
     }
 
     void ProcAd() {
-        if ((int) timer.timeLeft != (int) prevTime) {
+        if ((int) timer.TimeLeft != (int) prevTime) {
             int r = rand.Next(0, 100) + 1;
             //Debug.Log($"{r} || {percentChanceToSpawn}");
             if (r <= percentChanceToSpawn) {
@@ -79,6 +79,6 @@ public class AdManager : MonoBehaviour
             }
         }
 
-        prevTime = timer.timeLeft;
+        prevTime = timer.TimeLeft;
     }
 }

@@ -11,10 +11,14 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    public float timeLeft;
-    private Text timeDisplay; // used to update UI
+    private float timeLeft;
+    private AdManager adManager;
 
-    public AdManager adManager;
+    // used to update UI
+    private Text timeDisplay;
+    public Bars timeBar;
+
+    public float TimeLeft { get { return timeLeft; } }
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,8 @@ public class Timer : MonoBehaviour
         timeLeft = 91; // start with 90 seconds // set to 10 for testing
         timeDisplay = GameObject.Find("Timer Display").GetComponent<Text>();
         adManager = FindObjectOfType<AdManager>();
+
+        timeBar.SetMax(timeLeft);
     }
 
     // Update is called once per frame
@@ -33,6 +39,7 @@ public class Timer : MonoBehaviour
             if (timeLeft > 0)
             {
                 timeLeft -= Time.deltaTime;
+                timeBar.SetTimeMeter(timeLeft);
             }
             else
             {
@@ -56,5 +63,6 @@ public class Timer : MonoBehaviour
     public void AddTime()
     {
         timeLeft++;
+        timeBar.SetTimeMeter(timeLeft);
     }
 }
