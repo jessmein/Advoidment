@@ -22,7 +22,6 @@ public class ShootBall : BasketBallAd
     [SerializeField] TMP_Text missText;
     public bool hit = false;
 
-    private float publicDistance = 0;
     private void Start()
     {
         mouseDown = false;
@@ -48,8 +47,8 @@ public class ShootBall : BasketBallAd
         if (collision.gameObject.layer.ToString() == "6")//Miss!
         {
             Debug.Log(collision.gameObject.layer.ToString());
-            Vector3 resetPos = new Vector3(195, 92, 0);
-            transform.localPosition = resetPos;
+            Vector3 resetPos = new Vector3(295, 92, 0);
+            transform.position = resetPos;
             ballRB.isKinematic = false;
             ballSpringJoint.enabled = true;
             ballRB.velocity = new Vector2(0,0);
@@ -66,8 +65,8 @@ public class ShootBall : BasketBallAd
         else if (collision.gameObject.layer.ToString() == "8")//hit
         {
             Debug.Log(collision.gameObject.layer.ToString());
-            Vector3 resetPos = new Vector3(195, 92, 0);
-            transform.localPosition = resetPos;
+            Vector3 resetPos = new Vector3(295, 92, 0);
+            transform.position = resetPos;
             ballRB.isKinematic = false;
             ballSpringJoint.enabled = true;
             BucketsCounter++;
@@ -84,22 +83,18 @@ public class ShootBall : BasketBallAd
         Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         
 
-        float distance = Vector2.Distance(mousePos, slingRb.transform.position);
+        float distacne = Vector2.Distance(mousePos, slingRb.transform.position);
 
-        
-
-        if (distance >= maxDragDistance)
+        if (distacne >= maxDragDistance)
         {
             Vector2 direction = mousePos - slingRb.position;
             direction = direction.normalized;
             ballRB.position = slingRb.position + direction * maxDragDistance;
-            distance = Vector2.Distance(mousePos, slingRb.transform.position);
         }
         else
         {
             ballRB.position = mousePos;
         }
-        publicDistance = distance;
 
         
     }
@@ -119,7 +114,6 @@ public class ShootBall : BasketBallAd
 
     private IEnumerator ReleaseBall()
     {
-        Debug.Log(publicDistance);
         yield return new WaitForSeconds(releaseFequency);
         ballSpringJoint.enabled = false;
     }
