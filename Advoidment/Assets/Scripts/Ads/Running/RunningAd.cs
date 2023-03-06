@@ -30,6 +30,7 @@ public class RunningAd : Advertisement
     {
 
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        Difficulty = AdDifficulty.Medium;
 
         scale = transform.localScale;
         enemy.GetComponent<SpriteRenderer>().enabled = false;
@@ -48,6 +49,7 @@ public class RunningAd : Advertisement
     {
         //Debug.Log($"IN UPADTE METHOD: {Completed}");
         adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = Difficulty;
 
         if (Paused) {
             return;

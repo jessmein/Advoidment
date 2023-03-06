@@ -40,6 +40,8 @@ public class DodgingAd : Advertisement
     {
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
 
+        Difficulty = AdDifficulty.Medium;
+
         scale = transform.localScale;
         gravity = -9.8f * scale.y;
         jumpForce = 9f * scale.y;
@@ -57,6 +59,7 @@ public class DodgingAd : Advertisement
     {
         //Debug.Log($"IN UPADTE METHOD: {Completed}");
         adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = Difficulty;
 
         if (Paused)
         {

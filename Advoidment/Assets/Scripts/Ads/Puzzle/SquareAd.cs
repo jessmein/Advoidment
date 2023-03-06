@@ -24,6 +24,7 @@ public class SquareAd : Advertisement
     {
 
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        Difficulty = AdDifficulty.Easy;
 
         if (target != null)
         {
@@ -43,6 +44,7 @@ public class SquareAd : Advertisement
     {
         //Debug.Log($"IN UPADTE METHOD: {Completed} || {completed}");
         adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = Difficulty;
 
         if (Paused) {
             return;

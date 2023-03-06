@@ -45,7 +45,7 @@ public class CloseButton : MonoBehaviour
 
     IEnumerator waiter()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.1f);
         sprender.enabled = true;
     }
 }

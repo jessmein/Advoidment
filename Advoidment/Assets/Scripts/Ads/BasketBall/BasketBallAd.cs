@@ -33,12 +33,14 @@ public class BasketBallAd : Advertisement
     void Start()
     {
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        Difficulty = AdDifficulty.Hard;
         basketball = GameObject.Find("Basketball");
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (basketball.GetComponent<ShootBall>().hit)
         {
             StartCoroutine(waiter());
@@ -50,6 +52,7 @@ public class BasketBallAd : Advertisement
         else
         {
             adManager.ActiveAdComplete = Completed;
+            adManager.ActiveAdDifficulty = Difficulty;
         }   
         
     }

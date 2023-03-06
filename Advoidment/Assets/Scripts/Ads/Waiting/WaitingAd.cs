@@ -15,6 +15,7 @@ public class WaitingAd : Advertisement
     void Start()
     {
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        Difficulty = AdDifficulty.Easy;
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class WaitingAd : Advertisement
     {
         //Debug.Log($"IN UPADTE METHOD: {Completed}");
         adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = Difficulty;
 
         if (closeButton.isClicked)
         {

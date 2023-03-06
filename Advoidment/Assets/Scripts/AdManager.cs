@@ -20,9 +20,14 @@ public class AdManager : MonoBehaviour
 
     private bool activeAdComplete = false;
     private bool adsActive = false;
+    private AdDifficulty activeAdDifficulty;
+
+    private float gpValue = 2.0f;
+    private float gracePeriod;
 
     public bool AdsActive { get { return adsActive; } }
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
+    public AdDifficulty ActiveAdDifficulty { get { return activeAdDifficulty; } set { activeAdDifficulty = value; } }
     public float PercentChanceToSpawn { get { return percentChanceToSpawn; } set { percentChanceToSpawn = value; } }
     // Start is called before the first frame update
     void Start()
@@ -33,19 +38,31 @@ public class AdManager : MonoBehaviour
         percentChanceToSpawn = basePercentChangeToSpawn;
 
         activeAds.Clear();
-    }
 
-    // Update is called once per frame
-    void Update()
+        gracePeriod = gpValue;
+}
+
+// Update is called once per frame
+void Update()
     {
-        if (activeAds.Count < maxActiveAds) {
-            ProcAd();
+
+
+        if (gracePeriod <= 0) {
+            if (activeAds.Count < maxActiveAds) {
+                ProcAd();
+            }
         }
+
 
         if (activeAds.Count > 0) {
             if (activeAdComplete) {
                 activeAdComplete = false;
+                Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
+                timer.AddTime((float)activeAdDifficulty);
+
                 activeAds.Pop();
+
+                gracePeriod = gpValue;
 
                 if (activeAds.Count > 0) {
                     activeAds.Peek().UnpauseAd();
@@ -58,6 +75,8 @@ public class AdManager : MonoBehaviour
         {
             adsActive = false;
         }
+
+        gracePeriod -= Time.deltaTime;
     }
 
     void ProcAd() {
@@ -74,6 +93,8 @@ public class AdManager : MonoBehaviour
                 if (activeAds.Count > 0) {
                     activeAds.Peek().PauseAd();
                 }
+
+                gracePeriod = gpValue;
 
                 activeAds.Push(ad);
             }

@@ -34,18 +34,15 @@ public class Timer : MonoBehaviour
     void Update()
     {
         // deduct the time
-        if (adManager.AdsActive)
-        {
-            if (timeLeft > 0)
-            {
-                timeLeft -= Time.deltaTime;
-                timeBar.SetTimeMeter(timeLeft);
-            }
-            else
-            {
-                // end game
-                SceneManager.LoadScene("End Screen");
-            }
+        //if (adManager.AdsActive)
+        //{
+        //}
+        if (timeLeft > 0) {
+            timeLeft -= Time.deltaTime;
+            timeBar.SetTimeMeter(timeLeft);
+        } else {
+            // end game
+            SceneManager.LoadScene("End Screen");
         }
 
         // if there's 15 seconds left, change text color to red
@@ -60,9 +57,9 @@ public class Timer : MonoBehaviour
     }
 
     // used whenever the bagel is clicked
-    public void AddTime()
+    public void AddTime(float time)
     {
-        timeLeft++;
+        timeLeft += time;
         timeBar.SetTimeMeter(timeLeft);
     }
 }
