@@ -19,14 +19,16 @@ public class AdManager : MonoBehaviour
     private System.Random rand = new System.Random();
 
     private bool activeAdComplete = false;
+    private bool adsActive = false;
 
+    public bool AdsActive { get { return adsActive; } }
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
     public float PercentChanceToSpawn { get { return percentChanceToSpawn; } set { percentChanceToSpawn = value; } }
     // Start is called before the first frame update
     void Start()
     {
         timer = GameObject.Find("TimerTest").GetComponent<Timer>();
-        prevTime = timer.timeLeft;
+        prevTime = timer.TimeLeft;
 
         percentChanceToSpawn = basePercentChangeToSpawn;
 
@@ -49,11 +51,17 @@ public class AdManager : MonoBehaviour
                     activeAds.Peek().UnpauseAd();
                 }
             }
+
+            adsActive = true;
+        }
+        else
+        {
+            adsActive = false;
         }
     }
 
     void ProcAd() {
-        if ((int) timer.timeLeft != (int) prevTime) {
+        if ((int) timer.TimeLeft != (int) prevTime) {
             int r = rand.Next(0, 100) + 1;
             //Debug.Log($"{r} || {percentChanceToSpawn}");
             if (r <= percentChanceToSpawn) {
@@ -71,6 +79,6 @@ public class AdManager : MonoBehaviour
             }
         }
 
-        prevTime = timer.timeLeft;
+        prevTime = timer.TimeLeft;
     }
 }

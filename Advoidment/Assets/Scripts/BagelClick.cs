@@ -16,6 +16,8 @@ public class BagelClick : MonoBehaviour {
     public GameObject bagel;
     public float bagelRadius;
 
+    public Bars scoreBar;
+
     private AdManager adManager;
     private Text scoreDisplay;
     private Timer timeManager;
@@ -33,6 +35,8 @@ public class BagelClick : MonoBehaviour {
         timeManager = FindObjectOfType<Timer>();
 
         bagelClick = bagel.GetComponent<Animator>();
+
+        scoreBar.SetMax(100);
     }
 
     public void OnClick(InputValue value)
@@ -46,7 +50,8 @@ public class BagelClick : MonoBehaviour {
             bagelClick.SetTrigger("btnClicked"); // starts the animator
             score++;
             adManager.PercentChanceToSpawn += 0.5f;
-            //timeManager.AddTime(); // increases the time
+            timeManager.AddTime(); // increases the time
+            scoreBar.IncreaseScoreMeter(score);
         }
     }
 

@@ -1,26 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-//using static UnityEditor.Experimental.GraphView.GraphView;
-//using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UIElements;
 
-public class RunningAd : Advertisement
+public class DodgingAd : Advertisement
 {
     public GameObject player;
-    public List<GameObject> enemies;
-    public GameObject enemy;
-    public int enemyNumber;
+    public GameObject ground;
+    public GameObject groundCheck;
+    public LayerMask groundLayer;
     private Vector3 scale;
+
+    //Player variables
+    private bool isGrounded;
+    private float jumpForce;
+    private float gravity;
+    private float velocity;
+    private bool canJump;
+
+    //Enemy variables
+    public GameObject enemy;
+    public List<GameObject> enemies;
+    public int enemyNumber;
+    private float yValue;
+
     private bool isDead = false;
     public bool isMoving = true;
 
     public GameObject winScreen;
     public GameObject loseScreen;
 
-    private System.Random rand = new System.Random();
     public AdManager adManager;
-    private Vector3 originalPosition;
 
     public override bool Paused { get { return paused; } }
     public override bool Completed { get { return completed; } set { completed = value; } }
@@ -28,18 +38,17 @@ public class RunningAd : Advertisement
     // Start is called before the first frame update
     void Start()
     {
-
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
 
         scale = transform.localScale;
+        gravity = -9.8f * scale.y;
+        jumpForce = 9f * scale.y;
+
         enemy.GetComponent<SpriteRenderer>().enabled = false;
+        yValue = enemy.transform.position.y;
+        //Instantiate(enemy);
         loseScreen.GetComponent<SpriteRenderer>().enabled = false;
         winScreen.GetComponent<SpriteRenderer>().enabled = false;
-
-        player.transform.localPosition = new Vector3(0, 0, 0);
-        originalPosition = player.transform.position;
-        player.transform.position = new Vector3(originalPosition.x, originalPosition.y - 200f, 0);
-
         SpawnEnemies();
     }
 
@@ -49,40 +58,45 @@ public class RunningAd : Advertisement
         //Debug.Log($"IN UPADTE METHOD: {Completed}");
         adManager.ActiveAdComplete = Completed;
 
-        if (Paused) {
+        if (Paused)
+        {
             return;
         }
 
-        if (enemies.Count > 0)
+        //Enemy movement
+        if (enemies.Count > 0 )
         {
             for (int i = 0; i < enemies.Count; i++)
             {
                 if (isMoving)
                 {
-                    enemies[i].transform.position += new Vector3(0, (-5f * scale.x) * Time.deltaTime, 0);
+                    enemies[i].transform.position += new Vector3((-5f * scale.x) * Time.deltaTime, 0, 0);
                 }
-                
+
                 if (enemies[i])
                 {
                     //Makes the enemies offscreen invisible
-                    if (enemies[i].transform.localPosition.y >= 3.45f)
+                    if (enemies[i].transform.localPosition.x >= 11.3f)
                     {
                         SpriteRenderer sprender = enemies[i].GetComponent<SpriteRenderer>();
                         sprender.enabled = false;
                     }
-                    if (enemies[i].transform.localPosition.y <= 3.44f)
+
+                    if (enemies[i].transform.localPosition.x <= 11.2f)
                     {
                         SpriteRenderer sprender = enemies[i].GetComponent<SpriteRenderer>();
                         sprender.enabled = true;
                     }
 
+                    //Player dies
                     if (player.GetComponent<Collider2D>().bounds.Intersects(enemies[i].GetComponent<Collider2D>().bounds) && isDead == false)
                     {
-                        Debug.Log("OUCH");
+                        Debug.Log("OWWWWW");
                         StartCoroutine(waiterDeath());
                     }
 
-                    if (enemies[i].transform.localPosition.y <= -6.46f)
+                    //Despawn enemies
+                    if (enemies[i].transform.localPosition.x <= -11.3f)
                     {
                         Destroy(enemies[i]);
                         enemies.RemoveAt(i);
@@ -90,49 +104,54 @@ public class RunningAd : Advertisement
                 }
             }
         }
-
         if (enemies.Count == 0 && isDead == false)
         {
             StartCoroutine(waiter());
         }
 
-        player.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, player.transform.position.y, 0);
+        //Player movement
+        velocity += gravity * Time.deltaTime;
 
-        
-        if (player.transform.localPosition.x > 2.78)
+        if (isGrounded && velocity < 0)
         {
-            player.transform.position = new Vector3(originalPosition.x + (2.78f * scale.x), player.transform.position.y, 0);
+            velocity = 0;
+            canJump = true;
         }
 
-        if (player.transform.localPosition.x < -2.78)
+        if (Input.GetMouseButtonDown(0) && canJump)
         {
-            player.transform.position = new Vector3(originalPosition.x + (-2.78f * scale.x), player.transform.position.y, 0);
+            Debug.Log("JUMP");
+            velocity = jumpForce;
+            canJump = false;
         }
+        player.transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, groundLayer);
     }
 
     private void SpawnEnemies()
     {
         enemies.Clear();
-        Debug.Log("Enemies!");
-        float yPosition = 20 * scale.y;
-        float[] points = { -2 * scale.x, 0, 2 * scale.x };
+        Debug.Log("Dodge those fools!");
+        float xPosition = 5 * scale.x;
 
         enemies = new List<GameObject>(enemyNumber);
 
-        for (int i = 0; i < enemyNumber; i++)
+        for (int i = 0; i < enemyNumber; i ++)
         {
             GameObject newEnemy = Instantiate(enemy);
             newEnemy.transform.localScale = scale;
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
+            newEnemy.GetComponent<SpriteRenderer>().enabled = true;
 
             newEnemy.transform.position = new Vector2(
-                transform.position.x + points[Random.Range(0, 3)], transform.position.y + (yPosition)
+                transform.position.x + xPosition, yValue
                 );
 
             enemies.Add(newEnemy);
 
-            yPosition -= (5f * scale.y);
+            xPosition += (10f * scale.x);
         }
 
         isDead = false;
@@ -141,8 +160,7 @@ public class RunningAd : Advertisement
 
     private void DeleteEnemies()
     {
-        
-        for (int i = 0; i < enemies.Count; i++) 
+        for (int i = 0; i < enemies.Count; i++)
         {
             Destroy(enemies[i]);
         }

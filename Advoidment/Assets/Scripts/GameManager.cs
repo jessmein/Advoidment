@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Timer timer;
     public SquareAd puzzleAd;
     public RunningAd runningAd;
+    public BasketBallAd BasketBallAd;
     public int activeAds = 0;
 
     // Start is called before the first frame update
