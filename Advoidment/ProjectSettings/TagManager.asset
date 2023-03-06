@@ -13,10 +13,14 @@ TagManager:
   - 
   - Water
   - UI
-  - wall
+  - floor
   - rim
   - hoop
+<<<<<<< Updated upstream
   - Ground
+=======
+  - wall
+>>>>>>> Stashed changes
   - 
   - 
   - 
