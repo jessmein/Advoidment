@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+[RequireComponent(typeof(Rigidbody2D))] //never knew you could do this :D
 public class ShootBall : BasketBallAd
 {
-    private bool mouseDown;
+    public bool mouseDown;
     private Rigidbody2D ballRB;
     private Camera mainCamera;
     private SpringJoint2D ballSpringJoint;
     private float releaseFequency;
-    private float maxDragDistance = 50;
+    private float maxDragDistance = 90;
     private Rigidbody2D slingRb;
     private GameObject sling;
     private int rimHitCounter = 0;
