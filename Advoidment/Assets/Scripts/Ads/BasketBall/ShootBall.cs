@@ -47,7 +47,7 @@ public class ShootBall : BasketBallAd
         if (collision.gameObject.layer.ToString() == "6")//Miss!
         {
             Debug.Log(collision.gameObject.layer.ToString());
-            Vector3 resetPos = new Vector3(295, 92, 0);
+            Vector3 resetPos = new Vector3(162, 145, 0);
             transform.position = resetPos;
             ballRB.isKinematic = false;
             ballSpringJoint.enabled = true;
@@ -65,7 +65,7 @@ public class ShootBall : BasketBallAd
         else if (collision.gameObject.layer.ToString() == "8")//hit
         {
             Debug.Log(collision.gameObject.layer.ToString());
-            Vector3 resetPos = new Vector3(295, 92, 0);
+            Vector3 resetPos = new Vector3(162, 145, 0);
             transform.position = resetPos;
             ballRB.isKinematic = false;
             ballSpringJoint.enabled = true;
