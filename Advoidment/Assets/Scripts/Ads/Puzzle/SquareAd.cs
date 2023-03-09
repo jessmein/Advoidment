@@ -10,7 +10,6 @@ public class SquareAd : Advertisement
     public GameObject target;
     public GameObject key;
 
-
     public AdManager adManager;
     private Drag keyDragClass;
 
@@ -22,7 +21,6 @@ public class SquareAd : Advertisement
     // Start is called before the first frame update
     void Start()
     {
-
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
         Difficulty = AdDifficulty.Easy;
 

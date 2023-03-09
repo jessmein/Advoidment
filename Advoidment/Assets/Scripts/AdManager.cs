@@ -22,6 +22,8 @@ public class AdManager : MonoBehaviour
     private bool adsActive = false;
     private AdDifficulty activeAdDifficulty;
 
+    private Animator activeAdWindow;
+
     private float gpValue = 2.0f;
     private float gracePeriod;
 
@@ -29,6 +31,8 @@ public class AdManager : MonoBehaviour
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
     public AdDifficulty ActiveAdDifficulty { get { return activeAdDifficulty; } set { activeAdDifficulty = value; } }
     public float PercentChanceToSpawn { get { return percentChanceToSpawn; } set { percentChanceToSpawn = value; } }
+
+    public Animator ActiveAdWindow { set { activeAdWindow = value; } }
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +49,6 @@ public class AdManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
-
-
         if (gracePeriod <= 0) {
             if (activeAds.Count < maxActiveAds) {
                 ProcAd();
@@ -55,7 +57,14 @@ void Update()
 
 
         if (activeAds.Count > 0) {
+            Debug.Log("Is there a window? " + activeAdWindow);
             if (activeAdComplete) {
+                Debug.Log("Ad window: " + activeAdWindow);
+                if (activeAdWindow != null)
+                {
+                    activeAdWindow.SetTrigger("adFinished");
+                }
+
                 activeAdComplete = false;
                 Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
                 timer.AddTime((float)activeAdDifficulty);
@@ -97,6 +106,22 @@ void Update()
                 gracePeriod = gpValue;
 
                 activeAds.Push(ad);
+
+               /* switch (ad.WinType)
+                {
+                    case Advertisement.WindowType.square:
+                        activeAdWindow = Instantiate();
+                        break;
+
+                    case Advertisement.WindowType.longVert:
+                        break;
+
+                    case Advertisement.WindowType.squarewide:
+                        break;
+
+                    default:
+                        break;
+                }*/
             }
         }
 

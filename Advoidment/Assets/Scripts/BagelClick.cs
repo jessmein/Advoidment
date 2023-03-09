@@ -17,6 +17,7 @@ public class BagelClick : MonoBehaviour {
     public float bagelRadius;
 
     public Bars scoreBar;
+    public GameObject point; // gets the point prefab
 
     private AdManager adManager;
     private Text scoreDisplay;
@@ -52,6 +53,8 @@ public class BagelClick : MonoBehaviour {
             adManager.PercentChanceToSpawn += 0.5f;
             //timeManager.AddTime(1); // increases the time
             scoreBar.IncreaseScoreMeter(score);
+
+            //Instantiate(point);
         }
     }
 

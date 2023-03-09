@@ -16,6 +16,7 @@ public class WaitingAd : Advertisement
     {
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
         Difficulty = AdDifficulty.Easy;
+
     }
 
     // Update is called once per frame
