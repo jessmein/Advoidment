@@ -15,8 +15,11 @@ public class CloseButton : MonoBehaviour
     void Start()
     {
         scale = waitingAd.transform.localScale;
-        float[] pointsX = { -2.8f * scale.x, 2.8f * scale.x };
-        float[] pointsY = { -4.7f * scale.y, 4.7f * scale.y };
+        //float[] pointsX = { -2.8f * scale.x, 2.8f * scale.x };
+        //float[] pointsY = { -4.7f * scale.y, 4.7f * scale.y };
+
+        float[] pointsX = { -1.4f * scale.x, 1.4f * scale.x };
+        float[] pointsY = { -2.5f * scale.y, 2.5f * scale.y };
 
         isClicked = false;
         transform.localPosition = Vector3.zero;

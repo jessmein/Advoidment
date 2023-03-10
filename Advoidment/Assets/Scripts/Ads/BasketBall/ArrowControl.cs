@@ -35,7 +35,7 @@ public class ArrowControl : MonoBehaviour
     void CalculateArrow()
     {
         //Calculating midpoint
-        Vector3 midpoint = new Vector3((basketball.transform.position.x + sling.transform.position.x) / 2f, (basketball.transform.position.y + sling.transform.position.y) / 2f, 0);
+        Vector3 midpoint = new Vector3((basketball.transform.localPosition.x + sling.transform.localPosition.x) / 2f, (basketball.transform.localPosition.y + sling.transform.localPosition.y) / 2f, 0);
 
         float distance = Vector2.Distance(basketball.transform.position, sling.transform.position);
         transform.localPosition = midpoint;

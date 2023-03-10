@@ -44,7 +44,7 @@ public class DodgingAd : Advertisement
 
         scale = transform.localScale;
         gravity = -9.8f * scale.y;
-        jumpForce = 9f * scale.y;
+        jumpForce = 9f * (scale.y / 2.0f);
 
         enemy.GetComponent<SpriteRenderer>().enabled = false;
         yValue = enemy.transform.position.y;
@@ -99,8 +99,8 @@ public class DodgingAd : Advertisement
                     }
 
                     //Despawn enemies
-                    if (enemies[i].transform.localPosition.x <= -11.3f)
-                    {
+                    //if (enemies[i].transform.localPosition.x <= -11.3f)
+                    if (enemies[i].transform.localPosition.x <= -2.25f) {
                         Destroy(enemies[i]);
                         enemies.RemoveAt(i);
                     }
@@ -136,14 +136,15 @@ public class DodgingAd : Advertisement
     {
         enemies.Clear();
         Debug.Log("Dodge those fools!");
-        float xPosition = 5 * scale.x;
+        //float xPosition = 5 * scale.x;
+        float xPosition = 2.5f * scale.x;
 
         enemies = new List<GameObject>(enemyNumber);
 
         for (int i = 0; i < enemyNumber; i ++)
         {
             GameObject newEnemy = Instantiate(enemy);
-            newEnemy.transform.localScale = scale;
+            newEnemy.transform.localScale = scale / 2.0f;
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
             newEnemy.GetComponent<SpriteRenderer>().enabled = true;
