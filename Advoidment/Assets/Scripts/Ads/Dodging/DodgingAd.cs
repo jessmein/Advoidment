@@ -79,13 +79,13 @@ public class DodgingAd : Advertisement
                 if (enemies[i])
                 {
                     //Makes the enemies offscreen invisible
-                    if (enemies[i].transform.localPosition.x >= 11.3f)
+                    if (enemies[i].transform.localPosition.x >= 1.8f)
                     {
                         SpriteRenderer sprender = enemies[i].GetComponent<SpriteRenderer>();
                         sprender.enabled = false;
                     }
 
-                    if (enemies[i].transform.localPosition.x <= 11.2f)
+                    if (enemies[i].transform.localPosition.x <= 1.8f)
                     {
                         SpriteRenderer sprender = enemies[i].GetComponent<SpriteRenderer>();
                         sprender.enabled = true;
@@ -100,7 +100,7 @@ public class DodgingAd : Advertisement
 
                     //Despawn enemies
                     //if (enemies[i].transform.localPosition.x <= -11.3f)
-                    if (enemies[i].transform.localPosition.x <= -2.25f) {
+                    if (enemies[i].transform.localPosition.x <= -1.8f) {
                         Destroy(enemies[i]);
                         enemies.RemoveAt(i);
                     }
@@ -129,6 +129,11 @@ public class DodgingAd : Advertisement
         }
         player.transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
+        if (player.transform.localPosition.y >= 0.36)
+        {
+            velocity = 0;
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, groundLayer);
     }
 
@@ -144,7 +149,7 @@ public class DodgingAd : Advertisement
         for (int i = 0; i < enemyNumber; i ++)
         {
             GameObject newEnemy = Instantiate(enemy);
-            newEnemy.transform.localScale = scale / 2.0f;
+            newEnemy.transform.localScale = enemy.transform.lossyScale;
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
             newEnemy.GetComponent<SpriteRenderer>().enabled = true;

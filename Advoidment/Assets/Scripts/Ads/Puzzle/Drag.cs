@@ -40,15 +40,15 @@ public class Drag : MonoBehaviour
 
             
             //Right bounds
-            if (transform.localPosition.x > 1.83)
+            if (transform.localPosition.x > .9)
             {
-                transform.position = new Vector3(originalPosition.x + (1.82f * scale.x), transform.position.y, transform.position.z);
+                transform.position = new Vector3(originalPosition.x + (0.89f * scale.x), transform.position.y, transform.position.z);
             }
 
             //Left bounds
-            if (transform.localPosition.x < -1.83)
+            if (transform.localPosition.x < -1.66)
             {
-                transform.position = new Vector3(originalPosition.x - (1.82f * scale.x), transform.position.y, transform.position.z);
+                transform.position = new Vector3(originalPosition.x - (1.67f * scale.x), transform.position.y, transform.position.z);
             }
 
             //Upper bounds
@@ -58,9 +58,9 @@ public class Drag : MonoBehaviour
             }
 
             //Lower bounds
-            if (transform.localPosition.y < -1.25)
+            if (transform.localPosition.y < -0.75)
             {
-                transform.position = new Vector3(transform.position.x, originalPosition.y - (1.24f * scale.y), transform.position.z);
+                transform.position = new Vector3(transform.position.x, originalPosition.y - (0.74f * scale.y), transform.position.z);
             }
         }
     }

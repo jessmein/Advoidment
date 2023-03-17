@@ -71,7 +71,7 @@ public class SquareAd : Advertisement
         Instantiate(gameObject);
         
         target.gameObject.transform.localPosition = new Vector2(
-            (float) rand.NextDouble() * (1.6f + 1.6f) - 1.6f,
+            (float) rand.NextDouble() * (0.8f + 0.8f) - 0.8f,
             (float) rand.NextDouble() * (1.0f + 1.0f) - 1.0f
         );
         //targetCollider.bounds.Contains(key.transform.localPosition);
