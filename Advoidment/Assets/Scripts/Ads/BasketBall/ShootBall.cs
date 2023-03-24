@@ -34,8 +34,9 @@ public class ShootBall : BasketBallAd {
         slingRb = sling.GetComponent<Rigidbody2D>();
 
         resetPos = new Vector3(
-                sling.transform.position.x - (basketball.transform.localScale.x / 2.0f),
-                sling.transform.position.y,
+                //sling.transform.position.x - (basketball.transform.localScale.x / 2.0f),
+                sling.transform.position.x - (basketball.transform.localScale.x / 2.0f) /** (basketball.transform.localScale.x / 5.0f)*/,
+                sling.transform.position.y /** (basketball.transform.localScale.y / 5)*/,
                 sling.transform.position.z
                 );
     }
@@ -44,6 +45,13 @@ public class ShootBall : BasketBallAd {
         if (mouseDown) {
             DragBall();
         }
+
+        resetPos = new Vector3(
+        //sling.transform.position.x - (basketball.transform.localScale.x / 2.0f),
+        sling.transform.position.x - (basketball.transform.localScale.x / 2.0f)/** (basketball.transform.localScale.x / 5.0f)*/,
+        sling.transform.position.y /** (basketball.transform.localScale.y / 5)*/,
+        sling.transform.position.z
+        );
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

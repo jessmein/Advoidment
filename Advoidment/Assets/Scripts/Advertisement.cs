@@ -22,6 +22,8 @@ public abstract class Advertisement : MonoBehaviour
     protected AdDifficulty difficulty;
     protected WindowType winType;
 
+    protected Vector3 scaleChange = new Vector3(1, 1, 1);
+
     public abstract bool Paused { get; }
     public abstract bool Completed { get; set; }
     public AdDifficulty Difficulty { get { return difficulty; } set { difficulty = value; } }
@@ -67,6 +69,19 @@ public abstract class Advertisement : MonoBehaviour
     }
 
     public abstract void CreateAd();
+
+    public void ChangeScale(bool rate)
+    {
+        if (rate == true)
+        {
+            transform.localScale += scaleChange;
+        }
+        else
+        {
+            transform.localScale -= scaleChange;
+        }
+    }
+
 
     protected abstract IEnumerator waiter();
     protected abstract IEnumerator waiterDeath();

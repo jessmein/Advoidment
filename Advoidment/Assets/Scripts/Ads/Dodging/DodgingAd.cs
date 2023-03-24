@@ -32,6 +32,8 @@ public class DodgingAd : Advertisement
 
     public AdManager adManager;
 
+    private bool newBool = false;
+
     public override bool Paused { get { return paused; } }
     public override bool Completed { get { return completed; } set { completed = value; } }
 
@@ -44,7 +46,7 @@ public class DodgingAd : Advertisement
 
         scale = transform.localScale;
         gravity = -9.8f * scale.y;
-        jumpForce = 9f * (scale.y / 2.0f);
+        jumpForce = 12f * (scale.y / 2.0f);
 
         enemy.GetComponent<SpriteRenderer>().enabled = false;
         yValue = enemy.transform.position.y;
@@ -52,11 +54,28 @@ public class DodgingAd : Advertisement
         loseScreen.GetComponent<SpriteRenderer>().enabled = false;
         winScreen.GetComponent<SpriteRenderer>().enabled = false;
         SpawnEnemies();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        scale = transform.localScale;
+        yValue = enemy.transform.position.y;
+
+        //Scale up at beginning
+        if (transform.localScale.x <= 100 && newBool == false)
+        {
+            ChangeScale(true);
+        }
+
+        //Scale down at end
+        if (newBool == true && transform.localScale.x >= 30)
+        {
+            ChangeScale(false);
+        }
+
         //Debug.Log($"IN UPADTE METHOD: {Completed}");
         adManager.ActiveAdComplete = Completed;
         adManager.ActiveAdDifficulty = Difficulty;
@@ -181,6 +200,9 @@ public class DodgingAd : Advertisement
         //Completed = true;
         winScreen.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(1);
+        newBool = true;
+
+        yield return new WaitForSeconds(0.15f);
         yield return Completed = true;
         Debug.Log("See ya!");
         //gameManager.activeAds = 0;

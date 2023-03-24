@@ -33,6 +33,7 @@ public class Drag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scale = Ad.transform.localScale;
         if (dragging)
         {
             dragged = true;
