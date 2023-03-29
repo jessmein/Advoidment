@@ -34,6 +34,8 @@ public class DodgingAd : Advertisement
 
     private bool newBool = false;
 
+    private Animator ninjaAnim; // used to trigger jump animation
+
     public override bool Paused { get { return paused; } }
     public override bool Completed { get { return completed; } set { completed = value; } }
 
@@ -55,7 +57,7 @@ public class DodgingAd : Advertisement
         winScreen.GetComponent<SpriteRenderer>().enabled = false;
         SpawnEnemies();
 
-        
+        ninjaAnim = player.GetComponent<Animator>();        
     }
 
     // Update is called once per frame
@@ -138,6 +140,7 @@ public class DodgingAd : Advertisement
         {
             velocity = 0;
             canJump = true;
+            ninjaAnim.ResetTrigger("jumpTrigger");
         }
 
         if (Input.GetMouseButtonDown(0) && canJump)
@@ -145,6 +148,7 @@ public class DodgingAd : Advertisement
             Debug.Log("JUMP");
             velocity = jumpForce;
             canJump = false;
+            ninjaAnim.SetTrigger("jumpTrigger");
         }
         player.transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
