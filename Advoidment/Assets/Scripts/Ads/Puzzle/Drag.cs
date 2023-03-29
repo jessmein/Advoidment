@@ -24,7 +24,7 @@ public class Drag : MonoBehaviour
         scale = Ad.transform.localScale;
 
         transform.position = new Vector2(
-            originalPosition.x + (Random.Range(-90.0f, 90.0f)), originalPosition.y + (Random.Range(-90.0f, 90.0f))
+            originalPosition.x + (Random.Range(-50.0f, 50.0f)), originalPosition.y + (Random.Range(-50.0f, 50.0f))
             );
 
         dragged = false;
