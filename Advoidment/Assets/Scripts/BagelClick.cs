@@ -43,9 +43,9 @@ public class BagelClick : MonoBehaviour {
     public void OnClick(InputValue value)
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 test = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
+        Vector2 bagelPos = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
 
-        float distance = Vector2.Distance(mousePos, test);
+        float distance = Vector2.Distance(mousePos, bagelPos);
 
         if (distance <= bagelRadius && adManager.activeAds.Count == 0) {
             bagelClick.SetTrigger("btnClicked"); // starts the animator

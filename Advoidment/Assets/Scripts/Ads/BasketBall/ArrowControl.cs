@@ -37,10 +37,10 @@ public class ArrowControl : MonoBehaviour
         //Calculating midpoint
         Vector3 midpoint = new Vector3((basketball.transform.localPosition.x + sling.transform.localPosition.x) / 2f, (basketball.transform.localPosition.y + sling.transform.localPosition.y) / 2f, 0);
 
-        float distance = Vector2.Distance(basketball.transform.position, sling.transform.position);
+        float distance = Vector2.Distance(basketball.transform.localPosition, sling.transform.localPosition);
         transform.localPosition = midpoint;
 
-        float angleRad = Mathf.Atan2(basketball.transform.position.y - sling.transform.position.y, basketball.transform.position.x - sling.transform.position.x);
+        float angleRad = Mathf.Atan2(basketball.transform.localPosition.y - sling.transform.localPosition.y, basketball.transform.localPosition.x - sling.transform.localPosition.x);
         Debug.Log(angleRad);
 
         float AngleDeg = ((180 / Mathf.PI) * angleRad) + 180;

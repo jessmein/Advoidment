@@ -143,9 +143,8 @@ public class DodgingAd : Advertisement
             ninjaAnim.ResetTrigger("jumpTrigger");
         }
 
-        if (Input.GetMouseButtonDown(0) && canJump)
+        if (Input.GetMouseButtonDown(0) && canJump && isMoving)
         {
-            Debug.Log("JUMP");
             velocity = jumpForce;
             canJump = false;
             ninjaAnim.SetTrigger("jumpTrigger");
@@ -163,9 +162,8 @@ public class DodgingAd : Advertisement
     private void SpawnEnemies()
     {
         enemies.Clear();
-        Debug.Log("Dodge those fools!");
-        //float xPosition = 5 * scale.x;
-        float xPosition = 2.5f * scale.x;
+        float xPosition = 5.0f * scale.x;
+        //float xPosition = 2.5f * scale.x;
 
         enemies = new List<GameObject>(enemyNumber);
 
@@ -208,7 +206,6 @@ public class DodgingAd : Advertisement
 
         yield return new WaitForSeconds(0.15f);
         yield return Completed = true;
-        Debug.Log("See ya!");
         //gameManager.activeAds = 0;
         Destroy(gameObject);
     }
@@ -219,7 +216,6 @@ public class DodgingAd : Advertisement
         isDead = true;
         isMoving = false;
         yield return new WaitForSeconds(1);
-        Debug.Log("Restarting!");
         loseScreen.GetComponent<SpriteRenderer>().enabled = false;
         DeleteEnemies();
     }

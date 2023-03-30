@@ -57,16 +57,16 @@ void Update()
 
 
         if (activeAds.Count > 0) {
-            Debug.Log("Is there a window? " + activeAdWindow);
+            //Debug.Log("Is there a window? " + activeAdWindow);
             if (activeAdComplete) {
-                Debug.Log("Ad window: " + activeAdWindow);
+                //Debug.Log("Ad window: " + activeAdWindow);
                 if (activeAdWindow != null)
                 {
                     activeAdWindow.SetTrigger("adFinished");
                 }
 
                 activeAdComplete = false;
-                Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
+                //Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
                 timer.AddTime((float)activeAdDifficulty);
 
                 activeAds.Pop();
