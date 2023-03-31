@@ -59,7 +59,7 @@ public class BackgroundParallax : MonoBehaviour
     private void ResetParallax()
     {
         Debug.Log(this.name);
-        Vector3 pos = this.transform.position * localScale;
+        Vector3 pos = Vector3.Scale(this.transform.position, localScale);
         Debug.Log("(Mathf.Abs(pos.x) - spriteWidth) < 0: " + ((Mathf.Abs(pos.x) - spriteWidth) < 0));
         Debug.Log("Mathf.Abs(pos.x) = " + Mathf.Abs(pos.x));
         Debug.Log("Mathf.Abs(pos.x) - spriteWidth = " + (Mathf.Abs(pos.x) - spriteWidth));
