@@ -24,6 +24,10 @@ public class DodgingAd : Advertisement
     public int enemyNumber;
     private float yValue;
 
+    // Background variables
+    public GameObject floor;
+    public GameObject wall;
+
     private bool isDead = false;
     public bool isMoving = true;
 
@@ -65,6 +69,7 @@ public class DodgingAd : Advertisement
     {
         scale = transform.localScale;
         yValue = enemy.transform.position.y;
+        BackgroundMovement();
 
         //Scale up at beginning
         if (transform.localScale.x <= 100 && newBool == false)
@@ -128,6 +133,8 @@ public class DodgingAd : Advertisement
                 }
             }
         }
+
+
         if (enemies.Count == 0 && isDead == false)
         {
             StartCoroutine(waiter());
@@ -157,6 +164,11 @@ public class DodgingAd : Advertisement
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, 0.03f, groundLayer);
+    }
+
+    private void BackgroundMovement()
+    {
+
     }
 
     private void SpawnEnemies()
