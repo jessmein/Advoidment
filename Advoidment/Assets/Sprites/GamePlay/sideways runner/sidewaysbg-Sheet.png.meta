@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68ae2a896d9add14c993fd5987974c37
+guid: 77fcaac92a32e694bbf55d8266bff53c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,15 +36,15 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -141,7 +141,112 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sidewaysBg_floor_0
+      name: sidewaysbg-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 131
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385adf861a4c8274d9ea336e7c320c35
+      internalID: -841267600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sidewaysbg-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 280
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f95f32457e9d74ba63050c08429daf
+      internalID: -347544051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sidewaysbg-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 283
+        width: 51
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23172e2b4b53c6a4490100cf4948d1e5
+      internalID: -1652768866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sidewaysbg-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 264
+        width: 33
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b43c740b74114048898e38f33cd2afd
+      internalID: 481799400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sidewaysbg-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 131
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6d4d60020f05c44b6dc2faabc48c15
+      internalID: -891944197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sidewaysbg-Sheet_5
       rect:
         serializedVersion: 2
         x: 0
@@ -155,8 +260,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d4f55d90e884274f8c6ee04c3e25589
-      internalID: 727702902
+      spriteID: cfac3f8da11b94b46bf035d0bdb35a7f
+      internalID: 1608658835
       vertices: []
       indices: 
       edges: []
@@ -172,7 +277,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sidewaysBg_floor_0: 727702902
+      sidewaysbg-Sheet_2: -1652768866
+      sidewaysbg-Sheet_5: 1608658835
+      sidewaysbg-Sheet_3: 481799400
+      sidewaysbg-Sheet_0: -841267600
+      sidewaysbg-Sheet_1: -347544051
+      sidewaysbg-Sheet_4: -891944197
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
