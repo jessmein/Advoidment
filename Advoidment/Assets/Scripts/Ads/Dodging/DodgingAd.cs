@@ -12,7 +12,7 @@ public class DodgingAd : Advertisement
     private Vector3 scale;
 
     //Player variables
-    private bool isGrounded;
+    public bool isGrounded;
     private float jumpForce;
     private float gravity;
     private float velocity;
@@ -143,6 +143,13 @@ public class DodgingAd : Advertisement
         //Player movement
         velocity += gravity * Time.deltaTime;
 
+        if (Input.GetMouseButtonDown(0) && canJump && isMoving)
+        {
+            velocity = jumpForce;
+            canJump = false;
+            ninjaAnim.SetTrigger("jumpTrigger");
+        }
+
         if (isGrounded && velocity < 0)
         {
             velocity = 0;
@@ -150,12 +157,7 @@ public class DodgingAd : Advertisement
             ninjaAnim.ResetTrigger("jumpTrigger");
         }
 
-        if (Input.GetMouseButtonDown(0) && canJump && isMoving)
-        {
-            velocity = jumpForce;
-            canJump = false;
-            ninjaAnim.SetTrigger("jumpTrigger");
-        }
+
         player.transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
         if (player.transform.localPosition.y >= 0.36)
