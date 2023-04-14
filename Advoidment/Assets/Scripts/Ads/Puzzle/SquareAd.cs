@@ -88,6 +88,7 @@ public class SquareAd : Advertisement
     public override void CreateAd() {
         Instantiate(gameObject);
         
+        
         target.gameObject.transform.localPosition = new Vector2(
             (float) rand.NextDouble() * (0.8f + 0.8f) - 0.8f,
             (float) rand.NextDouble() * (1.0f + 1.0f) - 1.0f
@@ -121,5 +122,9 @@ public class SquareAd : Advertisement
 
     protected override IEnumerator waiterDeath() {
         return null;
+    }
+
+    public override void ForceCloseAd() {
+        StartCoroutine(waiter());
     }
 }

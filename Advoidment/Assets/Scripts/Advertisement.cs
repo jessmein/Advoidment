@@ -48,6 +48,8 @@ public abstract class Advertisement : MonoBehaviour
         paused = false;
     }
 
+    public abstract void ForceCloseAd();
+
     // gets the window obj animator to activate
     protected Animator GetWindowObj()
     {

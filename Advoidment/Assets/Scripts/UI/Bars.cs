@@ -41,10 +41,10 @@ public class Bars : MonoBehaviour
 
     public void IncreaseScoreMeter(float val)
     {
-        if (val >= bar.maxValue)
-        {
-            bar.maxValue += 2 * val;
-        }
-        bar.value = val;
+        //if (val >= bar.maxValue)
+        //{
+        //    bar.maxValue += 2 * val;
+        //}
+        bar.value = val % bar.maxValue;
     }
 }

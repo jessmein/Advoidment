@@ -20,6 +20,10 @@ public class BasketBallAd : Advertisement
         gameObject.SetActive(true);
     }
 
+    public override void ForceCloseAd() {
+        StartCoroutine(waiter());
+    }
+
     protected override IEnumerator waiter()
     {
         yield return new WaitForSeconds(1);
@@ -41,6 +45,7 @@ public class BasketBallAd : Advertisement
     void Start()
     {
         adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+
         Difficulty = AdDifficulty.Hard;
         basketball = GameObject.Find("Basketball");
 

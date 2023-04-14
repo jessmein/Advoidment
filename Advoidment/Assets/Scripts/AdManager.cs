@@ -31,6 +31,8 @@ public class AdManager : MonoBehaviour
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
     public AdDifficulty ActiveAdDifficulty { get { return activeAdDifficulty; } set { activeAdDifficulty = value; } }
     public float PercentChanceToSpawn { get { return percentChanceToSpawn; } set { percentChanceToSpawn = value; } }
+    public float GPValue { get { return gpValue; } }
+    public float GracePeriod { get { return gracePeriod; } set { gracePeriod = value; } }
 
     public Animator ActiveAdWindow { set { activeAdWindow = value; } }
     // Start is called before the first frame update

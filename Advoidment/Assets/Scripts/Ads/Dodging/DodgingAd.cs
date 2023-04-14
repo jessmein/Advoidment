@@ -67,6 +67,12 @@ public class DodgingAd : Advertisement
     // Update is called once per frame
     void Update()
     {
+        //if (adManager.ActiveAdComplete) {
+        //    Debug.Log("Here");
+        //    StartCoroutine(waiter());
+        //    StartCoroutine(waiterDeath());
+        //}
+
         scale = transform.localScale;
         yValue = enemy.transform.position.y;
         BackgroundMovement();
@@ -120,7 +126,7 @@ public class DodgingAd : Advertisement
                     //Player dies
                     if (player.GetComponent<Collider2D>().bounds.Intersects(enemies[i].GetComponent<Collider2D>().bounds) && isDead == false)
                     {
-                        Debug.Log("OWWWWW");
+                        //Debug.Log("OWWWWW");
                         StartCoroutine(waiterDeath());
                     }
 
@@ -238,5 +244,9 @@ public class DodgingAd : Advertisement
     {
         Instantiate(gameObject);
         gameObject.SetActive(true);
+    }
+
+    public override void ForceCloseAd() {
+        StartCoroutine(waiter());
     }
 }

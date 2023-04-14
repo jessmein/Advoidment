@@ -68,4 +68,8 @@ public class WaitingAd : Advertisement
         Instantiate(gameObject);
         gameObject.SetActive(true);
     }
+
+    public override void ForceCloseAd() {
+        StartCoroutine(waiter());
+    }
 }
