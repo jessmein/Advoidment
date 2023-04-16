@@ -14,11 +14,9 @@ public class DuckMove : DuckAd
     private Rigidbody2D duckRB;
     private bool isDead = false;
     [SerializeField] Sprite deadDuck;
-    [SerializeField] AudioSource gunshot;
     
     void Start()
     {
-        gunshot.Play();
         currentX = randomNumGen.Next(-10,11);
         currentY = randomNumGen.Next(-10, 11);
         direction = new Vector3(currentX, currentY, 0);
@@ -74,9 +72,7 @@ public class DuckMove : DuckAd
     private void OnMouseDown()
     {
         GetComponent<SpriteRenderer>().sprite = deadDuck;
-        Debug.Log("nope");
         isDead = true;
-        gunshot.Play();
         numberOfDeadDucks++;
     }
 

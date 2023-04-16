@@ -48,9 +48,6 @@ public class ShootBall : BasketBallAd {
             ballSpringJoint.enabled = true;
             ballRB.velocity = new Vector2(0, 0);
             ballRB.angularVelocity = 0.0f;
-        //} else if (collision.gameObject.layer.ToString() == "7")//rimHit!
-        //  {
-        //    Debug.Log(collision.gameObject.layer.ToString());
         } else if (collision.gameObject.layer.ToString() == "8")//hit
           {
             //Debug.Log(collision.gameObject.layer.ToString());

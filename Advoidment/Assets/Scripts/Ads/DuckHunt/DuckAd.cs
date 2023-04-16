@@ -25,6 +25,11 @@ public class DuckAd : Advertisement
         gameObject.SetActive(true);
     }
 
+    public override void ForceCloseAd()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override IEnumerator waiter()
     {
         yield return new WaitForSeconds(1);
@@ -41,7 +46,6 @@ public class DuckAd : Advertisement
 
     void Start()
     {
-        gunshot.Play();
         crossHair = GameObject.Find("Crosshair");
         //Generate 10 random Ducks
         Quaternion rotation = new Quaternion(0, 0, 0, 0);
