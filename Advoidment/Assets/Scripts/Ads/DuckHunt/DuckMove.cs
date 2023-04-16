@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DuckMove : MonoBehaviour
+public class DuckMove : DuckAd
 {
     // Start is called before the first frame update
     private float velocity = 0.5f;
@@ -74,9 +74,12 @@ public class DuckMove : MonoBehaviour
     private void OnMouseDown()
     {
         GetComponent<SpriteRenderer>().sprite = deadDuck;
+        Debug.Log("nope");
         isDead = true;
         gunshot.Play();
+        numberOfDeadDucks++;
     }
+
 
 }
 
