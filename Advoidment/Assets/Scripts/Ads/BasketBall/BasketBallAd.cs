@@ -26,14 +26,14 @@ public class BasketBallAd : Advertisement
 
     protected override IEnumerator waiter()
     {
-        yield return new WaitForSeconds(1);
-        newBool = true;
-
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         yield return Completed = true;
+
+        GameObject game = GameObject.Find("BasketBallAd(Clone)");
+        gameObject.SetActive(false);
+        Destroy(this);
+        Destroy(game);
         Debug.Log("BYE");
-        //gameManager.activeAds = 0;
-        Destroy(gameObject);
     }
 
     protected override IEnumerator waiterDeath()

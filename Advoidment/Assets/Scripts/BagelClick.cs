@@ -11,7 +11,7 @@ public class BagelClick : MonoBehaviour {
     public int Score { get { return score; } }
 
 
-    public static int score = 0;
+    public static int score = 99;
 
     public GameObject bagel;
     public float bagelRadius;
