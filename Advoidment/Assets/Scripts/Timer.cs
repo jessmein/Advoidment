@@ -46,7 +46,7 @@ public class Timer : MonoBehaviour
         }
 
         // if there's 15 seconds left, change text color to red
-        timeDisplay.color = timeLeft < 16 ? Color.red : Color.white;
+        timeDisplay.color = timeLeft < 16 ? Color.red : Color.black;
 
         timeDisplay.text = ((int)timeLeft / 60) + ":"; // update the time, get the minute
 

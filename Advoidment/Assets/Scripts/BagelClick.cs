@@ -27,6 +27,7 @@ public class BagelClick : MonoBehaviour {
     private Timer timeManager;
 
     private Animator bagelClick;
+    private GameObject canvas;
 
     void Start()
     {
@@ -43,6 +44,8 @@ public class BagelClick : MonoBehaviour {
         bagelClick = bagel.GetComponent<Animator>();
 
         scoreBar.SetMax(100);
+
+        canvas = GameObject.Find("Canvas");
     }
 
     public void OnClick(InputValue value)
@@ -57,10 +60,14 @@ public class BagelClick : MonoBehaviour {
             bagelClick.SetTrigger("btnClicked"); // starts the animator
             score++;
             adManager.PercentChanceToSpawn += 0.5f;
-            //timeManager.AddTime(1); // increases the time
             scoreBar.IncreaseScoreMeter(score);
 
-            //Instantiate(point);
+            GameObject pointObj = Instantiate(point, bagel.transform.position, Quaternion.identity);
+            // used when doubling score
+            /*if (...){
+             * pointObj.pointGiven.text = "+2";
+            }*/
+            pointObj.transform.parent = canvas.transform;
         }
 
         if (mousePos.x >= imagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&

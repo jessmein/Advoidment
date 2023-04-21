@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4906921279626522694}
   - component: {fileID: 1099231241965100911}
   - component: {fileID: 6424477354462153546}
+  - component: {fileID: 8492039464901407226}
+  - component: {fileID: 8388739307683223586}
   m_Layer: 5
   m_Name: point
   m_TagString: Untagged
@@ -61,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -120,6 +122,49 @@ PlayableDirector:
   - key: {fileID: -1648516282996602399, guid: 1f408d1e054fd10408b294de4e47e434, type: 2}
     value: {fileID: 1099231241965100911}
   - key: {fileID: -1625371237064353241, guid: 1f408d1e054fd10408b294de4e47e434, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 8492039464901407226}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &8492039464901407226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260714999602187626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: b9922a873ae26a94ca231e7d8e63eabc, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8388739307683223586}
+          m_TargetAssemblyTypeName: Point, Assembly-CSharp
+          m_MethodName: DestroySelf
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &8388739307683223586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260714999602187626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b7ea9335d368e4ab7d84d247d80ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointGiven: {fileID: 0}
