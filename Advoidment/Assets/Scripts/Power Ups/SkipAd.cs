@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkipAd : MonoBehaviour {
     private AdManager adManager;
     private bool activated = false;
-    private int numSkips = 10;
+    private int numSkips = 0;
     private float skipAdGracePeriod;
 
     public bool Activated { get { return activated; } set { activated = value; } }
