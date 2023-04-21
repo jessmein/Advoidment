@@ -27,6 +27,8 @@ public class AdManager : MonoBehaviour
     private float gpValue = 2.0f;
     private float gracePeriod;
 
+    private float lastChosenIndex = -1;
+
     public bool AdsActive { get { return adsActive; } }
     public bool ActiveAdComplete { get { return activeAdComplete; } set { activeAdComplete = value; } }
     public AdDifficulty ActiveAdDifficulty { get { return activeAdDifficulty; } set { activeAdDifficulty = value; } }
@@ -97,7 +99,13 @@ void Update()
             if (r <= percentChanceToSpawn) {
                 percentChanceToSpawn = basePercentChangeToSpawn;
 
-                int s = rand.Next(0, ads.Count);
+                //Prevent same ad from spawning twice in a row
+                int s;
+                do {
+                    s = rand.Next(0, ads.Count);
+                } while (s == lastChosenIndex);
+
+                lastChosenIndex = s;
                 Advertisement ad = ads[s];
                 ad.CreateAd();
 

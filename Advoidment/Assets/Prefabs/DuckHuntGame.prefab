@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3863447549250501861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 450, y: 270, z: 0}
+  m_LocalScale: {x: 27, y: 27, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3863447549516725699}
@@ -54,6 +54,7 @@ MonoBehaviour:
   duck: {fileID: 7832264120749286443, guid: ee032bab51ff8cf4c99891752d95ee43, type: 3}
   gunshot: {fileID: 3863447550215087916}
   adManager: {fileID: 0}
+  numberOfDeadDucks: 0
 --- !u!1 &3863447549516725698
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DuckMove : DuckAd
+public class DuckMove : MonoBehaviour
 {
     // Start is called before the first frame update
     private float velocity = 0.5f;
@@ -13,6 +13,7 @@ public class DuckMove : DuckAd
     private float currentY;
     private Rigidbody2D duckRB;
     private bool isDead = false;
+    private DuckAd duckAd;
     [SerializeField] Sprite deadDuck;
     
     void Start()
@@ -21,8 +22,10 @@ public class DuckMove : DuckAd
         currentY = randomNumGen.Next(-10, 11);
         direction = new Vector3(currentX, currentY, 0);
         duckRB = GetComponent<Rigidbody2D>();
+        duckAd = FindObjectOfType<DuckAd>();
+
     }
-    
+
     private void ChangeDirection()
     {
         currentX = randomNumGen.Next(-10, 11);
@@ -71,9 +74,11 @@ public class DuckMove : DuckAd
 
     private void OnMouseDown()
     {
-        GetComponent<SpriteRenderer>().sprite = deadDuck;
-        isDead = true;
-        numberOfDeadDucks++;
+        if (!isDead) {
+            GetComponent<SpriteRenderer>().sprite = deadDuck;
+            isDead = true;
+            duckAd.numberOfDeadDucks++;
+        }
     }
 
 

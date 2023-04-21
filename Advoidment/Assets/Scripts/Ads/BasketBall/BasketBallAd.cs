@@ -29,6 +29,11 @@ public class BasketBallAd : Advertisement
         yield return new WaitForSeconds(0.1f);
         yield return Completed = true;
 
+        adManager = FindObjectOfType<AdManager>();
+
+        adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = AdDifficulty.Hard;
+
         GameObject game = GameObject.Find("BasketBallAd(Clone)");
         gameObject.SetActive(false);
         Destroy(this);
@@ -44,7 +49,7 @@ public class BasketBallAd : Advertisement
     // Start is called before the first frame update
     void Start()
     {
-        adManager = GameObject.Find("AdManager").GetComponent<AdManager>();
+        adManager = FindObjectOfType<AdManager>();
 
         Difficulty = AdDifficulty.Hard;
         basketball = GameObject.Find("Basketball");
@@ -55,6 +60,9 @@ public class BasketBallAd : Advertisement
     // Update is called once per frame
     void Update()
     {
+        adManager.ActiveAdComplete = Completed;
+        adManager.ActiveAdDifficulty = Difficulty;
+
         scale = transform.localScale;
         if (transform.localScale.x <= 1 && newBool == false)
         {
@@ -70,16 +78,6 @@ public class BasketBallAd : Advertisement
         if (basketball.GetComponent<ShootBall>().hit)
         {
             StartCoroutine(waiter());
-        }
-        if (adManager == null)
-        {
-
-        }
-        else
-        {
-            adManager.ActiveAdComplete = Completed;
-            adManager.ActiveAdDifficulty = Difficulty;
-        }   
-        
+        }        
     }
 }
