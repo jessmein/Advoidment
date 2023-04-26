@@ -96,7 +96,7 @@ public class RunningAd : Advertisement
                         sprender.enabled = true;
                     }
 
-                    if (player.GetComponent<Collider2D>().bounds.Intersects(enemies[i].GetComponent<Collider2D>().bounds) && isDead == false)
+                    if (player.GetComponent<Collider2D>().bounds.Intersects(enemies[i].transform.GetChild(0).gameObject.GetComponent<Collider2D>().bounds) && isDead == false)
                     {
                         Debug.Log("OUCH");
                         StartCoroutine(waiterDeath());

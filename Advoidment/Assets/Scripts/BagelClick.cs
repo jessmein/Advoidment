@@ -67,7 +67,7 @@ public class BagelClick : MonoBehaviour {
             /*if (...){
              * pointObj.pointGiven.text = "+2";
             }*/
-            pointObj.transform.parent = canvas.transform;
+            pointObj.transform.SetParent(canvas.transform);
         }
 
         if (mousePos.x >= imagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
