@@ -40,6 +40,17 @@ public class SceneBTN_CTRL : MonoBehaviour
 
     public void Credits()
     {
+
+    }
+    
+    public void onBoarding() 
+    {
+        SceneManager.LoadScene("Onboarding");
+    }
+
+
+    public void StartGame()
+    {
         SceneManager.LoadScene("Credits");
     }
 

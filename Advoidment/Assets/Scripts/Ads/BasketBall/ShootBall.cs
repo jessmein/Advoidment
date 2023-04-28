@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))] //never knew you could do this :D
 public class ShootBall : BasketBallAd {
     public bool mouseDown;
@@ -28,12 +29,23 @@ public class ShootBall : BasketBallAd {
         slingRb = sling.GetComponent<Rigidbody2D>();
 
         //Default basketball position
-        resetPos = new Vector3(272.62f, 138.21f, 0.0f);
+
+        resetPos = transform.position;
+        //resetPos = new Vector3(272.62f, 138.21f, 0.0f);
     }
     // Update is called once per frame
     void Update() {
         if (mouseDown) {
             DragBall();
+        }
+
+        if (SceneManager.GetActiveScene().name == "Onboarding" && gameObject.transform.position.y < -5)
+        {
+            transform.position = resetPos;
+            ballRB.isKinematic = false;
+            ballSpringJoint.enabled = true;
+            ballRB.velocity = new Vector2(0, 0);
+            ballRB.angularVelocity = 0.0f;
         }
     }
 
