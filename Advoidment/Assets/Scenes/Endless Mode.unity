@@ -1219,8 +1219,8 @@ MonoBehaviour:
   point: {fileID: 260714999602187626, guid: eaa1a4757ac01534ead52544f422c766, type: 3}
   skipAdImage: {fileID: 1518340485}
   doubleClickImage: {fileID: 2073732806}
-  doubleClick: 0
   particlePool: {fileID: 322395964}
+  doubleClick: 0
 --- !u!4 &1399298161
 Transform:
   m_ObjectHideFlags: 0
