@@ -317,6 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 446013364885778205, guid: f864c3049dde0774982ed95ed28f6289, type: 3}
   poolSize: 10
+  plusOne: {fileID: 2100000, guid: fc3055152d2e62b43b789898383a3d94, type: 2}
+  plusTwo: {fileID: 2100000, guid: 57485a767e4582e46888dbcbd3195df6, type: 2}
 --- !u!1 &465011475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,8 +1221,8 @@ MonoBehaviour:
   point: {fileID: 260714999602187626, guid: eaa1a4757ac01534ead52544f422c766, type: 3}
   skipAdImage: {fileID: 1518340485}
   doubleClickImage: {fileID: 2073732806}
-  doubleClick: 0
   particlePool: {fileID: 322395964}
+  doubleClick: 0
 --- !u!4 &1399298161
 Transform:
   m_ObjectHideFlags: 0

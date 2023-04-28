@@ -8,6 +8,9 @@ public class Point : MonoBehaviour
     public ParticleSystem particlePrefab;
     public int poolSize = 10;
 
+    public Material plusOne;
+    public Material plusTwo;
+
     private List<ParticleSystem> particlePool;
     private int numInactive = 0;
     private bool beenReset = true;
@@ -59,6 +62,25 @@ public class Point : MonoBehaviour
         // Activate the particle and return it
         particle.gameObject.SetActive(true);
         return particle;
+    }
+
+    public void SetMaterial(bool doublePoints)
+    {
+        Material pointMaterial; // used to determine which point material to assign
+
+        if (doublePoints)
+        {
+            pointMaterial = plusTwo;
+        }
+        else
+        {
+            pointMaterial = plusOne;
+        }
+
+        for (int i = 0; i < particlePool.Count; i++)
+        {
+            particlePool[i].GetComponent<ParticleSystemRenderer>().material = pointMaterial;
+        }
     }
 
     private void AddToPool()
