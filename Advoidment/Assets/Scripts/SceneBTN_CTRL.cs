@@ -49,8 +49,7 @@ public class SceneBTN_CTRL : MonoBehaviour
     }
 
 
-    public void StartGame()
-    {
+    public void StartGame(int i = 0) {
         SceneManager.LoadScene("Credits");
     }
 

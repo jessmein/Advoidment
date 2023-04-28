@@ -69,6 +69,7 @@ public class BagelClick : MonoBehaviour {
             Vector2 bagelPos = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
             Vector2 skipImagePos = new Vector2(skipAdImage.transform.position.x, skipAdImage.transform.position.y);
             Vector2 doubleClickPos = new Vector2(doubleClickImage.transform.position.x, doubleClickImage.transform.position.y);
+            Vector2 freezeTimePos = new Vector2(freezeTimeImage.transform.position.x, freezeTimeImage.transform.position.y);
 
             float distance = Vector2.Distance(mousePos, bagelPos);
 
@@ -90,13 +91,13 @@ public class BagelClick : MonoBehaviour {
                     particlePool.SetMaterial(false);
                 }
 
-            // sets the particle system to where the mouse is and plays
-            pSys.transform.position = new Vector3(mousePos.x, mousePos.y, -4);
-            //Debug.Log(pSys.time);
-            //pSys.time = 1.0f;
-            //Debug.Log(pSys.time);
-            pSys.Emit(1);
-        }
+                // sets the particle system to where the mouse is and plays
+                pSys.transform.position = new Vector3(mousePos.x, mousePos.y, -4);
+                //Debug.Log(pSys.time);
+                //pSys.time = 1.0f;
+                //Debug.Log(pSys.time);
+                pSys.Emit(1);
+            }
 
             if (mousePos.x >= skipImagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
                 mousePos.x <= skipImagePos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
@@ -109,27 +110,26 @@ public class BagelClick : MonoBehaviour {
             if (mousePos.x >= doubleClickPos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
                 mousePos.x <= doubleClickPos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
                 mousePos.y >= doubleClickPos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
-                mousePos.y <= doubleClickPos.y + (skipAdImage.rectTransform.rect.height / 2f))
-            {
+                mousePos.y <= doubleClickPos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
 
-            //Only activate if double click is not already activated
-            //and if there are a sufficient number of the power up
-            if (!doubleClick && numDoubleClicks > 0) {
-                doubleClick = true;
-                numDoubleClicks--;
-            }
-        }
-
-        if (mousePos.x >= freezeTimePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
-            mousePos.x <= freezeTimePos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
-            mousePos.y >= freezeTimePos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
-            mousePos.y <= freezeTimePos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
-
-            if (!timeManager.FreezeTimeActive && timeManager.NumFreezeTime > 0) {
-                timeManager.FreezeTimeActive = true;
-                timeManager.NumFreezeTime--;
+                //Only activate if double click is not already activated
+                //and if there are a sufficient number of the power up
+                if (!doubleClick && numDoubleClicks > 0) {
+                    doubleClick = true;
+                    numDoubleClicks--;
+                }
             }
 
+            if (mousePos.x >= freezeTimePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
+                mousePos.x <= freezeTimePos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
+                mousePos.y >= freezeTimePos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
+                mousePos.y <= freezeTimePos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
+
+                if (!timeManager.FreezeTimeActive && timeManager.NumFreezeTime > 0) {
+                    timeManager.FreezeTimeActive = true;
+                    timeManager.NumFreezeTime--;
+                }
+            }
         }
     }
 
@@ -149,6 +149,10 @@ public class BagelClick : MonoBehaviour {
             timeManager.FreezeTimeActive = true;
             timeManager.NumFreezeTime--;
         }
+    }
+
+    public void OnPause(InputValue value) {
+        pauseMenu.SetActive(true);
     }
 
     // Update is called once per frame

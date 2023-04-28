@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         FindObjectOfType<Timer>().Start();
-        bagelClick.OnPause();
+        bagelClick.OnPause(null);
         bagelClick.Score = 0;
         FindObjectOfType<AdManager>().activeAds.Clear();
     }
