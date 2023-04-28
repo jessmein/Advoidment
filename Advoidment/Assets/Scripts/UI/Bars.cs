@@ -7,6 +7,7 @@ public class Bars : MonoBehaviour
 {
     private Slider bar;
     public bool isScore;
+    public Image image;
 
     // Start is called before the first frame update
     void Start()

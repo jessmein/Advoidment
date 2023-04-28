@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PowerUp {
-    SkipAd,
-    DoubleClick
+    SkipAd = 0,
+    DoubleClick = 1,
+    FreezeTime = 2
 }
 
 public class GameManager : MonoBehaviour
@@ -14,14 +15,17 @@ public class GameManager : MonoBehaviour
 
     public int powerUpThreshold = 50;
 
+    private Timer timeManager;
+
     private bool incrementSkips = false;
     private bool incrementDoubleClick = false;
+    private bool incrementFreezeTime = false;
     private int lastIncrementedScore = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeManager = FindObjectOfType<Timer>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
         if (bagelClick.Score > 0 && 
             bagelClick.Score - lastIncrementedScore >= powerUpThreshold) {
 
-            PowerUp powerUp = (PowerUp)Random.Range(0, 2);
+            PowerUp powerUp = (PowerUp)(Random.Range(0, 300) % 3);
 
             Debug.Log($"Picked {powerUp.ToString()}");
 
@@ -41,6 +45,10 @@ public class GameManager : MonoBehaviour
 
                 case PowerUp.DoubleClick:
                     incrementDoubleClick = true;
+                    break;
+
+                case PowerUp.FreezeTime:
+                    incrementFreezeTime = true;
                     break;
 
                 default:
@@ -59,6 +67,11 @@ public class GameManager : MonoBehaviour
         if (incrementDoubleClick) {
             bagelClick.NumDoubleClicks++;
             incrementDoubleClick = false;
+        }
+
+        if (incrementFreezeTime) {
+            timeManager.NumFreezeTime++;
+            incrementFreezeTime = false;
         }
     }
 }

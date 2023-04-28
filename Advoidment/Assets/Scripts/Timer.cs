@@ -17,8 +17,17 @@ public class Timer : MonoBehaviour
     // used to update UI
     private Text timeDisplay;
     public Bars timeBar;
+    public Text freezeTimeText;
+    public Image freezeTimeImage;
+
+    private float currentFreezeTime;
+    private float freezeTime = 8.0f;
+    private int numFreezeTime;
+    private bool freezeTimeActive;
 
     public float TimeLeft { get { return timeLeft; } }
+    public int NumFreezeTime { get { return numFreezeTime; } set { numFreezeTime = value; } }
+    public bool FreezeTimeActive { get { return freezeTimeActive; } set { freezeTimeActive = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +42,34 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        freezeTimeText.text = "" + numFreezeTime;
+
+        if (numFreezeTime <= 0 || currentFreezeTime != freezeTime) {
+            freezeTimeImage.color = Color.gray;
+        } 
+        
+        if (numFreezeTime > 0 && currentFreezeTime == freezeTime) {
+            freezeTimeImage.color = Color.white;
+        }
+
+        if (freezeTimeActive) {
+            //bar and other time ui thing needs to be gray
+            currentFreezeTime -= Time.deltaTime;
+            timeDisplay.color = Color.gray;
+            timeBar.image.color = Color.gray;
+
+            if (currentFreezeTime <= 0f) {
+                //make ui not gray
+                freezeTimeActive = false;
+                currentFreezeTime = freezeTime;
+                timeDisplay.color = Color.white;
+                timeBar.image.color = Color.blue;
+            }
+            return;
+        }
+
+        currentFreezeTime = freezeTime;
+
         // deduct the time
         //if (adManager.AdsActive)
         //{
