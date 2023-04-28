@@ -45,6 +45,8 @@ public class Timer : MonoBehaviour
     {
         freezeTimeText.text = "" + numFreezeTime;
 
+        timeLeft = Mathf.Clamp(timeLeft,0,91);
+
         if (numFreezeTime <= 0 || currentFreezeTime != freezeTime) {
             freezeTimeImage.color = Color.gray;
         } 

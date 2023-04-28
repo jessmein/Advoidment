@@ -151,8 +151,9 @@ public class BagelClick : MonoBehaviour {
         }
     }
 
-    public void OnPause(InputValue value) {
-        pauseMenu.SetActive(true);
+    public void OnPause() {
+        pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+        timeManager.PauseTimer();
     }
 
     // Update is called once per frame

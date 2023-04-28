@@ -18,6 +18,11 @@ public class ShootBall : BasketBallAd {
     private Vector3 resetPos;
     public bool hit = false;
 
+    private Vector3 basketBallOriginalPos;
+
+    [SerializeField] GameObject basketballPrefab;
+    [SerializeField] GameObject slingPrefab;
+
     private void Start() {
         mouseDown = false;
         mainCamera = Camera.main;
@@ -27,11 +32,13 @@ public class ShootBall : BasketBallAd {
         sling = GameObject.Find("Sling");
         basketball = GameObject.Find("Basketball");
         slingRb = sling.GetComponent<Rigidbody2D>();
+        basketBallOriginalPos = sling.transform.position;
+
 
         //Default basketball position
 
-        resetPos = transform.position;
-        //resetPos = new Vector3(272.62f, 138.21f, 0.0f);
+        //resetPos = basketBallOriginalPos;
+        resetPos = new Vector3(272.62f, 138.21f, 0.0f);
     }
     // Update is called once per frame
     void Update() {
