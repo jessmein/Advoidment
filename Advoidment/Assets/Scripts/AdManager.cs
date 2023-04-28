@@ -22,6 +22,8 @@ public class AdManager : MonoBehaviour
     private bool adsActive = false;
     private AdDifficulty activeAdDifficulty;
 
+    public bool enableAdProcing = true;
+
     private Animator activeAdWindow;
 
     private float gpValue = 2.0f;
@@ -53,6 +55,10 @@ public class AdManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
+        if (!enableAdProcing) {
+            return;
+        }
+
         if (gracePeriod <= 0) {
             if (activeAds.Count < maxActiveAds) {
                 ProcAd();
