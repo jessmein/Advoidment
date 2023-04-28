@@ -75,7 +75,9 @@ public class DuckMove : MonoBehaviour
     private void OnMouseDown()
     {
         if (!isDead) {
-            GetComponent<SpriteRenderer>().sprite = deadDuck;
+            SpriteRenderer duckSprite = GetComponent<SpriteRenderer>();
+            duckSprite.sprite = deadDuck;
+            duckSprite.color = Color.red;
             isDead = true;
             duckAd.numberOfDeadDucks++;
         }

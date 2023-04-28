@@ -20,14 +20,22 @@ public class BagelClick : MonoBehaviour {
     public GameObject point; // gets the point prefab
 
     public Image skipAdImage;
+    public Image doubleClickImage;
 
     private AdManager adManager;
     private GameManager gameManager;
     private Text scoreDisplay;
     private Timer timeManager;
 
+    public bool doubleClick;
+    private int numDoubleClicks;
+    private float doubleClickGracePeriod;
+    private float doubleClickGPValue = 3.0f;
+
     private Animator bagelClick;
     private GameObject canvas;
+
+    public int NumDoubleClicks { get { return numDoubleClicks; } set { numDoubleClicks = value; } }
 
     void Start()
     {
@@ -43,7 +51,7 @@ public class BagelClick : MonoBehaviour {
 
         bagelClick = bagel.GetComponent<Animator>();
 
-        scoreBar.SetMax(100);
+        scoreBar.SetMax(gameManager.powerUpThreshold);
 
         canvas = GameObject.Find("Canvas");
     }
@@ -52,35 +60,68 @@ public class BagelClick : MonoBehaviour {
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 bagelPos = new Vector2(bagel.transform.position.x, bagel.transform.position.y);
-        Vector2 imagePos = new Vector2(skipAdImage.transform.position.x, skipAdImage.transform.position.y);
+        Vector2 skipImagePos = new Vector2(skipAdImage.transform.position.x, skipAdImage.transform.position.y);
+        Vector2 doubleClickPos = new Vector2(doubleClickImage.transform.position.x, doubleClickImage.transform.position.y);
 
         float distance = Vector2.Distance(mousePos, bagelPos);
 
         if (distance <= bagelRadius && adManager.activeAds.Count == 0) {
             bagelClick.SetTrigger("btnClicked"); // starts the animator
-            score++;
+            score += doubleClick ? 2 : 1;
             adManager.PercentChanceToSpawn += 0.5f;
             scoreBar.IncreaseScoreMeter(score);
 
             GameObject pointObj = Instantiate(point, bagel.transform.position, Quaternion.identity);
             // used when doubling score
-            /*if (...){
-             * pointObj.pointGiven.text = "+2";
-            }*/
+            if (doubleClick){
+                pointObj.GetComponent<Text>().text = "+2 pts";
+            }
             pointObj.transform.SetParent(canvas.transform);
         }
 
-        if (mousePos.x >= imagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
-            mousePos.x <= imagePos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
-            mousePos.y >= imagePos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
-            mousePos.y <= imagePos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
+        if (mousePos.x >= skipImagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
+            mousePos.x <= skipImagePos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
+            mousePos.y >= skipImagePos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
+            mousePos.y <= skipImagePos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
             gameManager.skipAd.Activated = true;
+        }
+
+        if (mousePos.x >= doubleClickPos.x - (skipAdImage.rectTransform.rect.width / 2f) &&
+            mousePos.x <= doubleClickPos.x + (skipAdImage.rectTransform.rect.width / 2f) &&
+            mousePos.y >= doubleClickPos.y - (skipAdImage.rectTransform.rect.height / 2f) &&
+            mousePos.y <= doubleClickPos.y + (skipAdImage.rectTransform.rect.height / 2f)) {
+
+            //Only activate if double click is not already activated
+            //and if there are a sufficient number of the power up
+            if (!doubleClick && numDoubleClicks > 0) {
+                doubleClick = true;
+                numDoubleClicks--;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (doubleClickGracePeriod <= 0f) {
+            doubleClickGracePeriod = doubleClickGPValue;
+            doubleClick = false;
+        }
+
+        if (doubleClickGracePeriod != doubleClickGPValue || numDoubleClicks <= 0) {
+            doubleClickImage.color = Color.gray;
+        }
+
+        if (doubleClickGracePeriod == doubleClickGPValue && numDoubleClicks > 0) {
+            doubleClickImage.color = Color.white;
+        }
+
         scoreDisplay.text = "Score: " + score;
+
+        if (doubleClick) {
+            doubleClickGracePeriod -= Time.deltaTime;
+        }
+
+        doubleClickImage.GetComponentInChildren<Text>().text = "" + numDoubleClicks;
     }
 }
