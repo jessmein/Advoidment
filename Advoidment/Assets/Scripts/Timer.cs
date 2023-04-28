@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
 {
     private float timeLeft;
     private AdManager adManager;
+    private bool timerPaused = false;
 
     // used to update UI
     private Text timeDisplay;
@@ -21,7 +22,7 @@ public class Timer : MonoBehaviour
     public float TimeLeft { get { return timeLeft; } }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         timeLeft = 91; // start with 90 seconds // set to 10 for testing
         timeDisplay = GameObject.Find("Timer Display").GetComponent<Text>();
@@ -37,23 +38,30 @@ public class Timer : MonoBehaviour
         //if (adManager.AdsActive)
         //{
         //}
-        if (timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            timeBar.SetTimeMeter(timeLeft);
-        } else {
-            // end game
-            SceneManager.LoadScene("End Screen");
+
+        if (!timerPaused)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+                timeBar.SetTimeMeter(timeLeft);
+            }
+            else
+            {
+                // end game
+                SceneManager.LoadScene("End Screen");
+            }
+
+            // if there's 15 seconds left, change text color to red
+            timeDisplay.color = timeLeft < 16 ? Color.red : Color.black;
+
+            timeDisplay.text = ((int)timeLeft / 60) + ":"; // update the time, get the minute
+
+            int seconds = ((int)timeLeft % 60); // calculate the seconds
+
+            // if the seconds are single digits, add a zero before it, else just display the seconds
+            timeDisplay.text += seconds < 10 ? "0" + seconds : seconds;
         }
-
-        // if there's 15 seconds left, change text color to red
-        timeDisplay.color = timeLeft < 16 ? Color.red : Color.black;
-
-        timeDisplay.text = ((int)timeLeft / 60) + ":"; // update the time, get the minute
-
-        int seconds = ((int)timeLeft % 60); // calculate the seconds
-
-        // if the seconds are single digits, add a zero before it, else just display the seconds
-        timeDisplay.text += seconds < 10 ? "0" + seconds : seconds;
     }
 
     // used whenever the bagel is clicked
@@ -61,5 +69,10 @@ public class Timer : MonoBehaviour
     {
         timeLeft += time;
         timeBar.SetTimeMeter(timeLeft);
+    }
+
+    public void PauseTimer()
+    {
+        timerPaused = !timerPaused;
     }
 }

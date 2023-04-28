@@ -32,16 +32,15 @@ public class SceneBTN_CTRL : MonoBehaviour
         SceneManager.LoadScene("Start Screen");
     }
 
-    public void PlayAgain()
+    public void StartGame()
     {
         BagelClick.score = 0;
         SceneManager.LoadScene("Endless Mode");
     }
 
-    public void StartGame()
+    public void Credits()
     {
-        BagelClick.score = 0;
-        SceneManager.LoadScene("Endless Mode");
+        SceneManager.LoadScene("Credits");
     }
 
     public void Quit()

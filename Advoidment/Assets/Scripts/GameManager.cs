@@ -61,4 +61,12 @@ public class GameManager : MonoBehaviour
             incrementDoubleClick = false;
         }
     }
+
+    public void RestartGame()
+    {
+        FindObjectOfType<Timer>().Start();
+        bagelClick.OnPause();
+        bagelClick.Score = 0;
+        FindObjectOfType<AdManager>().activeAds.Clear();
+    }
 }

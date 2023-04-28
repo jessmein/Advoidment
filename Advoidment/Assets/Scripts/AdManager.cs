@@ -14,6 +14,8 @@ public class AdManager : MonoBehaviour
     public Stack<Advertisement> activeAds = new Stack<Advertisement>();
     public int maxActiveAds = 3;
 
+    private BagelClick bClick;
+
     private Timer timer;
     private float prevTime;
     private System.Random rand = new System.Random();
@@ -50,52 +52,63 @@ public class AdManager : MonoBehaviour
         activeAds.Clear();
 
         gracePeriod = gpValue;
+
+        bClick = FindObjectOfType<BagelClick>();
 }
 
 // Update is called once per frame
 void Update()
     {
-        if (!enableAdProcing) {
-            return;
-        }
-
-        if (gracePeriod <= 0) {
-            if (activeAds.Count < maxActiveAds) {
-                ProcAd();
-            }
-        }
-
-
-        if (activeAds.Count > 0) {
-            //Debug.Log("Is there a window? " + activeAdWindow);
-            if (activeAdComplete) {
-                //Debug.Log("Ad window: " + activeAdWindow);
-                if (activeAdWindow != null)
-                {
-                    activeAdWindow.SetTrigger("adFinished");
-                }
-
-                activeAdComplete = false;
-                //Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
-                timer.AddTime((float)activeAdDifficulty);
-
-                activeAds.Pop();
-
-                gracePeriod = gpValue;
-
-                if (activeAds.Count > 0) {
-                    activeAds.Peek().UnpauseAd();
-                }
-            }
-
-            adsActive = true;
-        }
-        else
+        if (!bClick.pauseMenu.activeInHierarchy)
         {
-            adsActive = false;
-        }
+            if (!enableAdProcing)
+            {
+                return;
+            }
 
-        gracePeriod -= Time.deltaTime;
+            if (gracePeriod <= 0)
+            {
+                if (activeAds.Count < maxActiveAds)
+                {
+                    ProcAd();
+                }
+            }
+
+
+            if (activeAds.Count > 0)
+            {
+                //Debug.Log("Is there a window? " + activeAdWindow);
+                if (activeAdComplete)
+                {
+                    //Debug.Log("Ad window: " + activeAdWindow);
+                    if (activeAdWindow != null)
+                    {
+                        activeAdWindow.SetTrigger("adFinished");
+                    }
+
+                    activeAdComplete = false;
+                    //Debug.Log($"Ad difficulty is {activeAdDifficulty}... adding {(float)activeAdDifficulty} seconds");
+                    timer.AddTime((float)activeAdDifficulty);
+
+                    activeAds.Pop();
+
+                    gracePeriod = gpValue;
+
+                    if (activeAds.Count > 0)
+                    {
+                        activeAds.Peek().UnpauseAd();
+                    }
+                }
+
+                adsActive = true;
+            }
+            else
+            {
+                adsActive = false;
+            }
+
+            gracePeriod -= Time.deltaTime;
+        }
     }
 
     void ProcAd() {
