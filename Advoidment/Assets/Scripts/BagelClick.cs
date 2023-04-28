@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,7 +10,6 @@ public class BagelClick : MonoBehaviour {
     // Start is called before the first frame update
     //[SerializeField] GameObject begal;
     public int Score { get { return score; } }
-
 
     public static int score = 0;
 
@@ -20,6 +20,8 @@ public class BagelClick : MonoBehaviour {
     public GameObject point; // gets the point prefab
 
     public Image skipAdImage;
+
+    public Point particlePool;
 
     private AdManager adManager;
     private GameManager gameManager;
@@ -62,12 +64,11 @@ public class BagelClick : MonoBehaviour {
             adManager.PercentChanceToSpawn += 0.5f;
             scoreBar.IncreaseScoreMeter(score);
 
-            GameObject pointObj = Instantiate(point, bagel.transform.position, Quaternion.identity);
-            // used when doubling score
-            /*if (...){
-             * pointObj.pointGiven.text = "+2";
-            }*/
-            pointObj.transform.SetParent(canvas.transform);
+            ParticleSystem pSys = particlePool.GetParticle();
+
+            // sets the particle system to where the mouse is and plays
+            pSys.transform.position = new Vector3(mousePos.x, mousePos.y, -4);
+            pSys.Play();
         }
 
         if (mousePos.x >= imagePos.x - (skipAdImage.rectTransform.rect.width / 2f) &&

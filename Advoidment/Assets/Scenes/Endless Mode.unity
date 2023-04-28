@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 322395962}
   - component: {fileID: 322395961}
   - component: {fileID: 322395963}
+  - component: {fileID: 322395964}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -301,6 +302,20 @@ MonoBehaviour:
   uiElementsToApplyEffectTo:
   - {fileID: 1518340485}
   - {fileID: 2000233565}
+--- !u!114 &322395964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322395960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b7ea9335d368e4ab7d84d247d80ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 446013364885778205, guid: f864c3049dde0774982ed95ed28f6289, type: 3}
+  poolSize: 10
 --- !u!1 &465011475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1135,7 @@ MonoBehaviour:
   scoreBar: {fileID: 465011477}
   point: {fileID: 260714999602187626, guid: eaa1a4757ac01534ead52544f422c766, type: 3}
   skipAdImage: {fileID: 1518340485}
+  particlePool: {fileID: 322395964}
 --- !u!4 &1399298161
 Transform:
   m_ObjectHideFlags: 0
