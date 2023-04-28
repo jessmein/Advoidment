@@ -317,6 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 446013364885778205, guid: f864c3049dde0774982ed95ed28f6289, type: 3}
   poolSize: 10
+  plusOne: {fileID: 2100000, guid: fc3055152d2e62b43b789898383a3d94, type: 2}
+  plusTwo: {fileID: 2100000, guid: 57485a767e4582e46888dbcbd3195df6, type: 2}
 --- !u!1 &465011475
 GameObject:
   m_ObjectHideFlags: 0

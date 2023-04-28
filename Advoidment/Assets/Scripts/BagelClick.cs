@@ -75,6 +75,15 @@ public class BagelClick : MonoBehaviour {
 
             ParticleSystem pSys = particlePool.GetParticle();
 
+            if (doubleClick)
+            {
+                particlePool.SetMaterial(true);
+            }
+            else
+            {
+                particlePool.SetMaterial(false);
+            }
+
             // sets the particle system to where the mouse is and plays
             pSys.transform.position = new Vector3(mousePos.x, mousePos.y, -4);
             pSys.Play();
